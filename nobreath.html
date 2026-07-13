@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NObreath | 동남메디칼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #14284A;
+    --navy-deep: #0B1B33;
+    --gold: #A8823C;
+    --gold-soft: #C9A868;
+    --green: #2F6F4E;
+    --cream: #F7F5F1;
+    --paper: #FBFAF7;
+    --ink: #1C1F24;
+    --ink-soft: #565B63;
+    --line: #DCD8CF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'IBM Plex Sans KR', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--green); font-weight:600; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--green); display:inline-block; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,245,241,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1120px; margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
+  .brand img{ height:32px; width:auto; display:block; }
+  .back-link{ font-size:0.88rem; color:var(--ink-soft); display:flex; align-items:center; gap:6px; }
+  .back-link:hover{ color:var(--navy); }
+
+  .p-hero{
+    position:relative; overflow:hidden;
+    padding:120px 32px 90px;
+    background:var(--navy-deep);
+  }
+  .p-hero-photo{
+    position:absolute; top:0; right:0; bottom:0;
+    height:100%; width:auto; max-width:52%;
+    object-fit:contain; object-position:right bottom;
+    transform:translate(-64px, 48px);
+    -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+            mask-image: linear-gradient(to right, black 82%, transparent 100%);
+    pointer-events:none;
+  }
+  @media(max-width:760px){ .p-hero-photo{ display:none; } }
+  .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
+  .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
+  h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
+  .p-origin{ margin-top:10px; font-size:0.95rem; color:#C7CCD6; }
+  .p-lede{ margin-top:26px; max-width:56ch; font-size:1.08rem; color:#DCDFE6; }
+  .p-cta{ margin-top:36px; display:flex; gap:16px; flex-wrap:wrap; }
+  .p-hero .btn-ghost{ border-color:var(--paper); color:var(--paper); }
+  .p-hero .btn-ghost:hover{ background:var(--paper); color:var(--navy); }
+  .btn{
+    padding:14px 28px; border-radius:2px; font-size:0.92rem; font-weight:500;
+    border:1px solid var(--navy); transition:all .25s ease; display:inline-block;
+  }
+  .btn-primary{ background:var(--navy); color:var(--paper); }
+  .btn-primary:hover{ background:var(--navy-deep); }
+  .btn-ghost{ background:transparent; color:var(--navy); }
+  .btn-ghost:hover{ background:var(--navy); color:var(--paper); }
+
+  section{ padding:72px 0; }
+  .section-head{ margin-bottom:44px; max-width:640px; }
+  h2.section-title{ font-size:clamp(1.5rem, 3vw, 2rem); color:var(--navy); font-weight:500; }
+  .section-desc{ margin-top:16px; color:var(--ink-soft); font-size:1rem; max-width:56ch; }
+
+  .features{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .feature-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media(min-width:760px){ .feature-grid{ grid-template-columns:repeat(2, 1fr); } }
+  .feature-card{ background:var(--paper); padding:32px; }
+  .feature-title{ font-size:1.05rem; color:var(--navy); font-weight:500; }
+  .feature-title::before{ content:''; display:block; width:28px; height:1px; background:var(--green); margin-bottom:16px; }
+  .feature-desc{ margin-top:10px; font-size:0.92rem; color:var(--ink-soft); }
+
+  .specs-list{ list-style:none; max-width:760px; }
+  .specs-list li{
+    display:flex; justify-content:space-between; gap:24px; padding:18px 0; border-bottom:1px solid var(--line);
+    font-size:0.95rem;
+  }
+  .specs-list li span:first-child{ color:var(--ink-soft); }
+  .specs-list li span:last-child{ color:var(--navy); font-weight:500; text-align:right; }
+
+  .cta-strip{ background:var(--navy); color:var(--paper); }
+  .cta-strip .wrap{ display:flex; flex-direction:column; gap:24px; align-items:flex-start; }
+  @media(min-width:760px){ .cta-strip .wrap{ flex-direction:row; align-items:center; justify-content:space-between; } }
+  .cta-strip p{ font-family:'Fraunces', serif; font-size:1.3rem; max-width:36ch; color:#EDEAE2; }
+
+  footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
+  footer .wrap{ display:flex; flex-direction:column; gap:8px; }
+  @media(min-width:760px){ footer .wrap{ flex-direction:row; justify-content:space-between; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html.html" class="brand"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
+    <a href="index.html.html#products" class="back-link">← 제품 라인업으로</a>
+  </div>
+</header>
+
+<section class="p-hero">
+  <img class="p-hero-photo" src="nobreath-hero-cutout.png" alt="">
+  <div class="p-hero-inner">
+    <div class="product-tag">Respiratory</div>
+    <h1 class="p-title">NObreath</h1>
+    <div class="p-origin">Bedfont Scientific · 영국</div>
+    <p class="p-lede">
+      NObreath는 호기 일산화질소(FeNO, Fractional exhaled Nitric Oxide) 측정을 통해
+      기도 염증 상태를 비침습적으로 확인하는 호흡기 진단기기입니다. 천식 등 호흡기 질환의
+      진단과 치료 경과 관찰에 활용되며, 채혈이나 조직 검사 없이 간단한 호기 검사만으로
+      정확한 임상 데이터를 제공합니다.
+    </p>
+    <div class="p-cta">
+      <a href="index.html.html#contact" class="btn btn-primary">도입 문의하기</a>
+      <a href="index.html.html#products" class="btn btn-ghost">다른 제품 보기</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Key Features</div>
+      <h2 class="section-title">비침습적이고 정확한 기도 염증 진단</h2>
+      <p class="section-desc">NObreath가 임상 현장에서 신뢰받는 이유입니다.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-title">비침습 검사</div>
+        <p class="feature-desc">채혈이나 조직 검사 없이 간단한 호기 측정만으로 기도 염증 여부를 확인할 수 있습니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">빠른 결과 확인</div>
+        <p class="feature-desc">검사 후 수분 내로 FeNO 수치를 확인할 수 있어 진료 흐름을 지연시키지 않습니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">임상적 신뢰도</div>
+        <p class="feature-desc">Bedfont Scientific의 정밀 센서 기술을 기반으로 국제 가이드라인에 부합하는 측정값을 제공합니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">간편한 운용</div>
+        <p class="feature-desc">직관적인 조작 방식으로 병·의원 현장에서 별도 교육 없이도 손쉽게 사용할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Overview</div>
+      <h2 class="section-title">제품 개요</h2>
+    </div>
+    <ul class="specs-list">
+      <li><span>측정 항목</span><span>호기 일산화질소 (FeNO)</span></li>
+      <li><span>검사 방식</span><span>비침습적 호기 검사</span></li>
+      <li><span>제조사</span><span>Bedfont Scientific Ltd (영국)</span></li>
+      <li><span>주요 활용 분야</span><span>천식 등 호흡기 질환 진단 및 경과 관찰</span></li>
+      <li><span>국내 유통</span><span>동남메디칼 (공식 수입·유통)</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <p>"NObreath 도입 및 자세한 제품 자료가 필요하신가요?"</p>
+    <a href="index.html.html#contact" class="btn btn-primary" style="border-color:var(--paper);">문의하기</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Dongnam Medical. All rights reserved.</div>
+    <div>Official Korea Distributor of Bedfont Scientific Ltd.</div>
+  </div>
+</footer>
+
+</body>
+</html>

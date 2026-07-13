@@ -35,77 +35,55 @@
   /* focus visibility */
   a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(247,245,241,0.88);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1120px; margin:0 auto; }
-  .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
-  .brand img{ height:32px; width:auto; display:block; }
-  .navlinks{ display:flex; gap:36px; font-size:0.92rem; color:var(--ink-soft); }
-  .navlinks a:hover{ color:var(--navy); }
-  .navlinks{ display:none; }
-  @media(min-width:760px){ .navlinks{ display:flex; } }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:120px 32px 90px;
-    background:linear-gradient(180deg, var(--cream) 0%, #F1EEE7 100%);
-    overflow:hidden;
-  }
-  .hero-inner{ max-width:1120px; margin:0 auto; position:relative; }
+  /* ---------- eyebrow (shared with section heads below) ---------- */
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
     color:var(--green); font-weight:600; margin-bottom:22px;
   }
   .eyebrow::before{ content:''; width:22px; height:1px; background:var(--green); display:inline-block; }
-  h1.hero-title{
-    font-size:clamp(2.2rem, 5vw, 3.6rem);
-    font-weight:500;
-    color:var(--navy);
-    max-width:14ch;
-    letter-spacing:-0.01em;
-  }
-  .hero-sub{
-    margin-top:26px;
-    max-width:46ch;
-    font-size:1.08rem;
-    color:var(--ink-soft);
-  }
-  .hero-cta{ margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; }
-  .btn{
-    padding:14px 28px; border-radius:2px; font-size:0.92rem; font-weight:500;
-    border:1px solid var(--navy); transition:all .25s ease;
-  }
-  .btn-primary{ background:var(--navy); color:var(--paper); }
-  .btn-primary:hover{ background:var(--navy-deep); }
-  .btn-ghost{ background:transparent; color:var(--navy); }
-  .btn-ghost:hover{ background:var(--navy); color:var(--paper); }
 
-  /* waveform signature */
-  .waveform{ margin-top:64px; width:100%; max-width:620px; }
-  .waveform svg{ width:100%; height:auto; display:block; }
-  .waveform path{
-    stroke:var(--green);
-    stroke-width:2;
-    fill:none;
-    stroke-dasharray:1400;
-    stroke-dashoffset:1400;
-    animation: draw 2.6s cubic-bezier(.4,0,.2,1) forwards .3s;
+  /* ---------- NEW TOP: header / hero / features ---------- */
+  .dn-top{ background:var(--cream); }
+  .dn-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 40px; border-bottom:1px solid var(--line);
+    max-width:1100px; margin:0 auto;
   }
-  @keyframes draw{ to{ stroke-dashoffset:0; } }
-  .waveform-label{
-    font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink-soft); margin-top:10px; display:flex; justify-content:space-between; max-width:620px;
-  }
+  .dn-logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.3rem; letter-spacing:-0.01em; }
+  .dn-logo img{ height:32px; width:auto; display:block; }
+  .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
+  .dn-nav a{ cursor:pointer; }
+  .dn-nav a:hover{ color:var(--navy); }
 
-  @media(prefers-reduced-motion: reduce){
-    .waveform path{ animation:none; stroke-dashoffset:0; }
+  .dn-hero{ padding:100px 40px 90px; text-align:center; max-width:1100px; margin:0 auto; }
+  .dn-hero .eyebrow{ justify-content:center; }
+  .dn-hero-title{ font-size:clamp(1.9rem, 4vw, 2.6rem); font-weight:500; line-height:1.4; margin-bottom:20px; letter-spacing:-0.01em; color:var(--navy); }
+  .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin:0 auto 40px; }
+  .dn-cta-group{ display:flex; gap:16px; justify-content:center; }
+  .dn-btn{
+    padding:14px 28px; font-size:0.92rem; font-weight:500; border-radius:2px;
+    cursor:pointer; border:1px solid var(--navy); transition:all .25s ease; display:inline-block;
+  }
+  .dn-btn-primary{ background:var(--navy); color:var(--paper); }
+  .dn-btn-primary:hover{ background:var(--navy-deep); }
+  .dn-btn-secondary{ background:transparent; color:var(--navy); }
+  .dn-btn-secondary:hover{ background:var(--navy); color:var(--paper); }
+
+  .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1100px; margin:0 auto; }
+  .dn-feature{ padding:32px 20px; text-align:center; border-right:1px solid var(--line); }
+  .dn-feature:last-child{ border-right:none; }
+  .dn-feature-icon{ width:28px; height:1px; background:var(--green); margin:0 auto 16px; }
+  .dn-feature-title{ font-size:0.94rem; font-weight:600; margin-bottom:6px; color:var(--navy); }
+  .dn-feature-desc{ font-size:0.85rem; color:var(--ink-soft); }
+
+  @media(max-width:768px){
+    .dn-features{ grid-template-columns:repeat(2, 1fr); }
+    .dn-feature:nth-child(2){ border-right:none; }
+    .dn-feature:nth-child(1), .dn-feature:nth-child(2){ border-bottom:1px solid var(--line); }
+    .dn-hero{ padding:60px 24px; }
+    .dn-header{ padding:16px 20px; }
+    .dn-nav{ gap:16px; font-size:0.82rem; }
   }
 
   /* ---------- SECTION shared ---------- */
@@ -118,17 +96,15 @@
   /* ---------- ABOUT ---------- */
   .about{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .about-grid{ display:grid; grid-template-columns:1fr; gap:48px; }
-  @media(min-width:840px){ .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:start; } }
-  .about-stats{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-  .stat{ background:var(--paper); padding:28px 24px; }
-  .stat .num{ font-family:'Fraunces', serif; font-size:2rem; color:var(--navy); font-weight:500; }
-  .stat .label{ margin-top:6px; font-size:0.85rem; color:var(--ink-soft); }
+  @media(min-width:840px){ .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:center; } }
+  .partners-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:64px; }
+  .partner-logo{ max-width:220px; max-height:84px; width:auto; height:auto; object-fit:contain; }
 
   /* ---------- PRODUCTS ---------- */
   .products-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
   @media(min-width:760px){ .products-grid{ grid-template-columns:repeat(3, 1fr); } }
   .product-card{
-    background:var(--paper); padding:40px 32px; position:relative;
+    display:block; background:var(--paper); padding:40px 32px; position:relative;
     transition: background .25s ease;
   }
   .product-card:hover{ background:#F4F1EA; }
@@ -168,37 +144,53 @@
 </head>
 <body>
 
-<header>
-  <div class="nav">
-    <div class="brand"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
-    <nav class="navlinks">
+<div class="dn-top">
+  <header class="dn-header">
+    <div class="dn-logo"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
+    <nav class="dn-nav">
       <a href="#about">회사소개</a>
       <a href="#products">제품</a>
-      <a href="#partner">파트너십</a>
-      <a href="#contact">문의</a>
+      <a href="#partner">파트너사</a>
+      <a href="#contact">문의하기</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Since Import &amp; Distribution</div>
-    <h1 class="hero-title">정밀한 진단이<br>표준이 되는 곳</h1>
-    <p class="hero-sub">동남메디칼은 해외 정밀 진단기기를 국내에 독점 수입·유통하며,<br class="hide-mobile">
-    병·의원이 신뢰할 수 있는 진단 환경을 만듭니다.</p>
-    <div class="hero-cta">
-      <a href="#products" class="btn btn-primary">제품 라인업 보기</a>
-      <a href="#contact" class="btn btn-ghost">도입 문의</a>
+  <section class="dn-hero">
+    <div class="eyebrow">해외 정밀 진단·측정기기 수입·유통</div>
+    <h1 class="dn-hero-title">정확한 진단, 믿을 수 있는 파트너</h1>
+    <p class="dn-subcopy">
+      동남메디칼은 해외 우수 진단·측정기기와 관련 소모품을 공급하며,<br>
+      병·의원, 보건소의 정확한 진단을 든든하게 뒷받침합니다.
+    </p>
+    <div class="dn-cta-group">
+      <a href="#products" class="dn-btn dn-btn-primary">제품 살펴보기</a>
+      <a href="#contact" class="dn-btn dn-btn-secondary">문의하기</a>
     </div>
+  </section>
 
-    <div class="waveform">
-      <svg viewBox="0 0 620 90" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,45 C40,45 40,20 70,20 C100,20 100,70 130,70 C160,70 160,10 195,10 C230,10 230,80 265,80 C300,80 300,25 335,25 C365,25 365,55 395,55 C430,55 430,35 465,35 C500,35 500,50 530,50 C560,50 560,45 620,45" />
-      </svg>
-      <div class="waveform-label"><span>호기 분석 파형 · Breath Signal</span><span>NObreath FeNO</span></div>
+  <section class="dn-features">
+    <div class="dn-feature">
+      <div class="dn-feature-icon"></div>
+      <div class="dn-feature-title">글로벌 파트너십</div>
+      <div class="dn-feature-desc">영국·일본 등 검증된 제조사</div>
     </div>
-  </div>
-</section>
+    <div class="dn-feature">
+      <div class="dn-feature-icon"></div>
+      <div class="dn-feature-title">국내 독점 유통</div>
+      <div class="dn-feature-desc">공식 인증 파트너사</div>
+    </div>
+    <div class="dn-feature">
+      <div class="dn-feature-icon"></div>
+      <div class="dn-feature-title">체계적인 사후관리</div>
+      <div class="dn-feature-desc">도입부터 유지보수까지</div>
+    </div>
+    <div class="dn-feature">
+      <div class="dn-feature-icon"></div>
+      <div class="dn-feature-title">병·의원 및 보건소 공급</div>
+      <div class="dn-feature-desc">공공·민간 의료기관 대응</div>
+    </div>
+  </section>
+</div>
 
 <section class="about" id="about">
   <div class="wrap about-grid">
@@ -217,11 +209,11 @@
         국내 의료 현장에 전달하는 것이 동남메디칼의 원칙입니다.
       </p>
     </div>
-    <div class="about-stats">
-      <div class="stat"><div class="num">3</div><div class="label">공식 취급 제품 라인</div></div>
-      <div class="stat"><div class="num">2</div><div class="label">해외 제조사 파트너십</div></div>
-      <div class="stat"><div class="num">1</div><div class="label">국내 독점 유통 채널</div></div>
-      <div class="stat"><div class="num">MFDS</div><div class="label">국내 인허가 전담</div></div>
+    <div class="about-partners">
+      <div class="partners-row">
+        <img class="partner-logo" src="Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
+        <img class="partner-logo" src="피탄 회사로고.png" alt="PITTAN">
+      </div>
     </div>
   </div>
 </section>
@@ -236,7 +228,7 @@
   </div>
   <div class="wrap">
     <div class="products-grid">
-      <div class="product-card">
+      <a class="product-card" href="nobreath.html">
         <div class="product-tag">Respiratory</div>
         <div class="product-name">NObreath</div>
         <div class="product-origin">Bedfont Scientific · 영국</div>
@@ -245,7 +237,7 @@
           호흡기 진단기기입니다.
         </p>
         <div class="product-line"></div>
-      </div>
+      </a>
       <div class="product-card">
         <div class="product-tag">Diagnostics</div>
         <div class="product-name">Pitagoras</div>
