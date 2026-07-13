@@ -56,11 +56,10 @@
   .dn-nav a{ cursor:pointer; }
   .dn-nav a:hover{ color:var(--navy); }
 
-  .dn-hero{ padding:100px 40px 90px; text-align:center; max-width:1100px; margin:0 auto; }
-  .dn-hero .eyebrow{ justify-content:center; }
+  .dn-hero{ padding:100px 40px 90px; max-width:1100px; margin:0 auto; }
   .dn-hero-title{ font-size:clamp(1.9rem, 4vw, 2.6rem); font-weight:500; line-height:1.4; margin-bottom:20px; letter-spacing:-0.01em; color:var(--navy); }
-  .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin:0 auto 40px; }
-  .dn-cta-group{ display:flex; gap:16px; justify-content:center; }
+  .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin:0 0 40px; }
+  .dn-cta-group{ display:flex; gap:16px; justify-content:flex-start; }
   .dn-btn{
     padding:14px 28px; font-size:0.92rem; font-weight:500; border-radius:2px;
     cursor:pointer; border:1px solid var(--navy); transition:all .25s ease; display:inline-block;
@@ -69,6 +68,23 @@
   .dn-btn-primary:hover{ background:var(--navy-deep); }
   .dn-btn-secondary{ background:transparent; color:var(--navy); }
   .dn-btn-secondary:hover{ background:var(--navy); color:var(--paper); }
+
+  .dn-dna{ margin-top:48px; width:100%; max-width:380px; }
+  .dn-dna svg{ width:100%; height:auto; display:block; }
+  .dn-dna .strand{
+    fill:none; stroke-width:2;
+    stroke-dasharray:620; stroke-dashoffset:620;
+    animation:dn-draw 2.2s cubic-bezier(.4,0,.2,1) forwards .2s;
+  }
+  .dn-dna .rung{
+    stroke:var(--gold); stroke-width:2;
+    stroke-dasharray:60; stroke-dashoffset:60;
+    animation:dn-draw .5s ease forwards 1.6s;
+  }
+  @keyframes dn-draw{ to{ stroke-dashoffset:0; } }
+  @media(prefers-reduced-motion: reduce){
+    .dn-dna .strand, .dn-dna .rung{ animation:none; stroke-dashoffset:0; }
+  }
 
   .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1100px; margin:0 auto; }
   .dn-feature{ padding:32px 20px; text-align:center; border-right:1px solid var(--line); }
@@ -157,7 +173,7 @@
 
   <section class="dn-hero">
     <div class="eyebrow">해외 정밀 진단·측정기기 수입·유통</div>
-    <h1 class="dn-hero-title">정확한 진단, 믿을 수 있는 파트너</h1>
+    <h1 class="dn-hero-title">정확한 진단,<br>믿을 수 있는 파트너</h1>
     <p class="dn-subcopy">
       동남메디칼은 해외 우수 진단·측정기기와 관련 소모품을 공급하며,<br>
       병·의원, 보건소의 정확한 진단을 든든하게 뒷받침합니다.
@@ -165,6 +181,18 @@
     <div class="dn-cta-group">
       <a href="#products" class="dn-btn dn-btn-primary">제품 살펴보기</a>
       <a href="#contact" class="dn-btn dn-btn-secondary">문의하기</a>
+    </div>
+
+    <div class="dn-dna">
+      <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+        <path class="strand" d="M0,40 C25,10 50,10 75,40 C100,70 125,70 150,40 C175,10 200,10 225,40 C250,70 275,70 300,40 C325,10 350,10 375,40 C388,54 394,54 400,40" stroke="var(--navy)" />
+        <path class="strand" d="M0,40 C25,70 50,70 75,40 C100,10 125,10 150,40 C175,70 200,70 225,40 C250,10 275,10 300,40 C325,70 350,70 375,40 C388,54 394,54 400,40" stroke="var(--green)" />
+        <line class="rung" x1="37.5" y1="10" x2="37.5" y2="70" />
+        <line class="rung" x1="112.5" y1="10" x2="112.5" y2="70" />
+        <line class="rung" x1="187.5" y1="10" x2="187.5" y2="70" />
+        <line class="rung" x1="262.5" y1="10" x2="262.5" y2="70" />
+        <line class="rung" x1="337.5" y1="10" x2="337.5" y2="70" />
+      </svg>
     </div>
   </section>
 
