@@ -133,13 +133,14 @@
   /* ---------- PARTNER STRIP ---------- */
   .partner{ background:var(--navy); color:var(--paper); }
   .partner .wrap{ display:flex; flex-direction:column; gap:28px; align-items:flex-start; }
-  @media(min-width:760px){ .partner .wrap{ flex-direction:row; align-items:center; justify-content:space-between; } }
+  @media(min-width:760px){ .partner .wrap{ flex-direction:row; align-items:center; justify-content:space-between; gap:40px; } }
   .partner-quote{ font-family:'Fraunces', serif; font-size:1.3rem; font-weight:400; max-width:36ch; line-height:1.5; color:#EDEAE2; }
-  .partner-meta{ font-size:0.85rem; color:#B7BFCC; margin-top:14px; }
-  .partner-badge{
-    border:1px solid rgba(255,255,255,0.25); padding:16px 22px; font-size:0.85rem;
-    letter-spacing:0.04em; color:#EDEAE2; white-space:nowrap;
+  .partner-marks{ display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+  .partner-mark{
+    background:var(--paper); border-radius:4px; padding:14px 22px;
+    display:flex; align-items:center; justify-content:center;
   }
+  .partner-mark img{ max-height:26px; width:auto; display:block; }
 
   /* ---------- CONTACT ---------- */
   .contact-grid{ display:grid; grid-template-columns:1fr; gap:40px; }
@@ -151,7 +152,6 @@
   }
   .contact-list li span:first-child{ color:var(--ink-soft); }
   .contact-list li span:last-child{ color:var(--navy); font-weight:500; }
-  .contact-note{ font-size:0.9rem; color:var(--ink-soft); margin-top:24px; }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
   footer .wrap{ display:flex; flex-direction:column; gap:8px; }
@@ -292,11 +292,11 @@
 
 <section class="partner" id="partner">
   <div class="wrap">
-    <div>
-      <p class="partner-quote">"정확한 진단은 정확한 파트너십에서 시작됩니다."</p>
-      <p class="partner-meta">Bedfont Scientific Ltd(영국) 공식 파트너 · 장기 협력 관계</p>
+    <p class="partner-quote">"정확한 진단은 정확한 파트너십에서 시작됩니다."</p>
+    <div class="partner-marks">
+      <div class="partner-mark"><img src="메디칼 탑 회사로고.png" alt="메디칼탑"></div>
+      <div class="partner-mark"><img src="협진 회사로고.png" alt="협진메디텍"></div>
     </div>
-    <div class="partner-badge">Official Korea Distributor</div>
   </div>
 </section>
 
@@ -310,13 +310,10 @@
     <div class="contact-grid">
       <ul class="contact-list">
         <li><span>전화</span><span>031-908-7588</span></li>
-        <li><span>이메일</span><span>info@dongnammedical.co.kr</span></li>
+        <li><span>이메일</span><span>dnamed@hanmail.net</span></li>
         <li><span>주소</span><span>경기도 고양시 일산 (본사)</span></li>
         <li><span>운영시간</span><span>평일 09:00 – 18:00</span></li>
       </ul>
-      <p class="contact-note">
-        * 본 페이지는 샘플 시안입니다. 실제 주소·이메일 등 정보는 확정 후 교체해 드릴게요.
-      </p>
     </div>
   </div>
 </section>
@@ -324,7 +321,6 @@
 <footer>
   <div class="wrap">
     <div>© 2026 Dongnam Medical. All rights reserved.</div>
-    <div>Official Korea Distributor of Bedfont Scientific Ltd.</div>
   </div>
 </footer>
 
