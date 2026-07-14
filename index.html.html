@@ -13,8 +13,8 @@
     --gold: #A8823C;
     --gold-soft: #C9A868;
     --green: #2F6F4E;
-    --cream: #F7F5F1;
-    --paper: #FBFAF7;
+    --cream: #FFFFFF;
+    --paper: #FFFFFF;
     --ink: #1C1F24;
     --ink-soft: #565B63;
     --line: #DCD8CF;
@@ -30,7 +30,7 @@
   }
   h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
   a{ color:inherit; text-decoration:none; }
-  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+  .wrap{ max-width:1360px; margin:0 auto; padding:0 32px; }
 
   /* focus visibility */
   a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
@@ -47,8 +47,7 @@
   .dn-top{ background:var(--cream); }
   .dn-header{
     display:flex; justify-content:space-between; align-items:center;
-    padding:20px 40px; border-bottom:1px solid var(--line);
-    max-width:1100px; margin:0 auto;
+    padding:20px 24px 20px 64px; border-bottom:1px solid var(--line);
   }
   .dn-logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.3rem; letter-spacing:-0.01em; }
   .dn-logo img{ height:32px; width:auto; display:block; }
@@ -56,7 +55,22 @@
   .dn-nav a{ cursor:pointer; }
   .dn-nav a:hover{ color:var(--navy); }
 
-  .dn-hero{ padding:100px 40px 90px; max-width:1100px; margin:0 auto; }
+  .dn-hero{
+    position:relative;
+    padding:100px 40px 90px; max-width:1360px; margin:0 auto;
+  }
+  .dn-hero::before{
+    content:'';
+    position:absolute; top:0; left:50%; right:0; bottom:0;
+    transform:translateX(-50%); width:100vw; z-index:0;
+    background-image:
+      linear-gradient(to right, #FFFFFF 0%, #FFFFFF 32%, rgba(255,255,255,0.82) 48%, rgba(255,255,255,0.35) 64%, rgba(255,255,255,0) 80%),
+      url('hero-bg.jpg');
+    background-position: 0 0, center;
+    background-size: 100% 100%, cover;
+    background-repeat: no-repeat, no-repeat;
+  }
+  .dn-hero > *{ position:relative; z-index:1; }
   .dn-hero-title{ font-size:clamp(1.9rem, 4vw, 2.6rem); font-weight:500; line-height:1.4; margin-bottom:20px; letter-spacing:-0.01em; color:var(--navy); }
   .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin:0 0 40px; }
   .dn-cta-group{ display:flex; gap:16px; justify-content:flex-start; }
@@ -86,7 +100,7 @@
     .dn-dna .strand, .dn-dna .rung{ animation:none; stroke-dashoffset:0; }
   }
 
-  .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1100px; margin:0 auto; }
+  .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1360px; margin:0 auto; }
   .dn-feature{ padding:32px 20px; text-align:center; border-right:1px solid var(--line); }
   .dn-feature:last-child{ border-right:none; }
   .dn-feature-icon{ width:28px; height:1px; background:var(--green); margin:0 auto 16px; }
@@ -154,8 +168,14 @@
   .contact-list li span:last-child{ color:var(--navy); font-weight:500; }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
-  footer .wrap{ display:flex; flex-direction:column; gap:8px; }
-  @media(min-width:760px){ footer .wrap{ flex-direction:row; justify-content:space-between; } }
+  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 24px 0 64px; }
+  @media(min-width:760px){ .footer-inner{ flex-direction:row; align-items:flex-start; justify-content:space-between; } }
+  .footer-info{ display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:flex-start; }
+  @media(min-width:760px){ .footer-info{ justify-content:flex-end; } }
+  .footer-info span{
+    font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+    color:#6E7889; margin-right:6px;
+  }
 </style>
 </head>
 <body>
@@ -266,17 +286,17 @@
         </p>
         <div class="product-line"></div>
       </a>
-      <div class="product-card">
-        <div class="product-tag">Diagnostics</div>
+      <a class="product-card" href="pitagoras.html">
+        <div class="product-tag">Wellness</div>
         <div class="product-name">Pitagoras</div>
         <div class="product-origin">Pittan Co., Ltd. · 일본</div>
         <p class="product-desc">
-          정밀 진단 데이터를 기반으로 한 분석 솔루션으로, 임상 현장의 진단 정확도를
-          높이는 데 활용됩니다.
+          얼굴 땀 속 아미노산 5종을 효소 발색 반응과 광학 측정으로 분석해 피부 보습력과
+          컨디션을 확인하는 스마트 웰니스 디바이스입니다.
         </p>
         <div class="product-line"></div>
-      </div>
-      <div class="product-card">
+      </a>
+      <a class="product-card" href="saltsignal.html">
         <div class="product-tag">Monitoring</div>
         <div class="product-name">Salt Signal</div>
         <div class="product-origin">해외 제조사 파트너십</div>
@@ -285,7 +305,7 @@
           적용 가능한 제품입니다.
         </p>
         <div class="product-line"></div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -319,8 +339,14 @@
 </section>
 
 <footer>
-  <div class="wrap">
+  <div class="footer-inner">
     <div>© 2026 Dongnam Medical. All rights reserved.</div>
+    <div class="footer-info">
+      <div><span>Tel</span>031-908-7588</div>
+      <div><span>Fax</span>031-908-7589</div>
+      <div><span>Email</span>dnamed@hanmail.net</div>
+      <div><span>Address</span>경기도 고양시 일산 (본사)</div>
+    </div>
   </div>
 </footer>
 
