@@ -54,6 +54,25 @@
   .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
   .dn-nav a{ cursor:pointer; }
   .dn-nav a:hover{ color:var(--navy); }
+  .dn-nav-item{ position:relative; padding-bottom:14px; margin-bottom:-14px; }
+  .dn-dropdown{
+    position:absolute; top:100%; left:50%;
+    transform:translateX(-50%) translateY(-6px);
+    background:var(--paper); border:1px solid var(--line); border-radius:4px;
+    min-width:190px; padding:8px 0;
+    box-shadow:0 12px 28px rgba(11,27,51,0.14);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+    z-index:60;
+  }
+  .dn-nav-item:hover .dn-dropdown{
+    opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0);
+  }
+  .dn-dropdown a{
+    display:block; padding:10px 20px; font-size:0.86rem; color:var(--ink-soft);
+    white-space:nowrap; cursor:pointer;
+  }
+  .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
 
   .dn-hero{
     position:relative;
@@ -212,9 +231,37 @@
     <div class="dn-logo"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
     <nav class="dn-nav">
       <a href="#about">회사소개</a>
-      <a href="#products">제품</a>
-      <a href="#partner">파트너사</a>
-      <a href="resources.html">자료실</a>
+      <div class="dn-nav-item">
+        <a href="#products">제품</a>
+        <div class="dn-dropdown">
+          <a href="nobreath.html">NObreath V2</a>
+          <a href="nobreath-v1.html">NObreath V1</a>
+          <a href="pitagoras.html">Pitagoras</a>
+          <a href="saltsignal.html">Salt Signal</a>
+          <a href="needle-counter.html">Needle Counter</a>
+          <a href="anatomy-model.html">교육용 인체모형</a>
+          <a href="cosmetics.html">화장품</a>
+        </div>
+      </div>
+      <div class="dn-nav-item">
+        <a href="#partner">파트너사</a>
+        <div class="dn-dropdown">
+          <a href="#about">해외 파트너십</a>
+          <a href="#partner">국내 협력사</a>
+        </div>
+      </div>
+      <div class="dn-nav-item">
+        <a href="resources.html">자료실</a>
+        <div class="dn-dropdown">
+          <a href="resources.html#res-nobreath-v2">NObreath V2</a>
+          <a href="resources.html#res-nobreath-v1">NObreath V1</a>
+          <a href="resources.html#res-pitagoras">Pitagoras</a>
+          <a href="resources.html#res-saltsignal">Salt Signal</a>
+          <a href="resources.html#res-needle-counter">Needle Counter</a>
+          <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
+          <a href="resources.html#res-cosmetics">화장품</a>
+        </div>
+      </div>
       <a href="#contact">문의하기</a>
     </nav>
   </header>

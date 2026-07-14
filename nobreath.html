@@ -50,8 +50,29 @@
   @media(max-width:768px){ .nav{ padding:16px 20px; } }
   .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
   .brand img{ height:32px; width:auto; display:block; }
-  .back-link{ font-size:0.88rem; color:var(--ink-soft); display:flex; align-items:center; gap:6px; }
-  .back-link:hover{ color:var(--navy); }
+  .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
+  .dn-nav a{ cursor:pointer; }
+  .dn-nav a:hover{ color:var(--navy); }
+  .dn-nav-item{ position:relative; padding-bottom:14px; margin-bottom:-14px; }
+  .dn-dropdown{
+    position:absolute; top:100%; left:50%;
+    transform:translateX(-50%) translateY(-6px);
+    background:var(--paper); border:1px solid var(--line); border-radius:4px;
+    min-width:190px; padding:8px 0;
+    box-shadow:0 12px 28px rgba(11,27,51,0.14);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+    z-index:60;
+  }
+  .dn-nav-item:hover .dn-dropdown{
+    opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0);
+  }
+  .dn-dropdown a{
+    display:block; padding:10px 20px; font-size:0.86rem; color:var(--ink-soft);
+    white-space:nowrap; cursor:pointer;
+  }
+  .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
+  @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
   .p-hero{
     position:relative; overflow:hidden;
@@ -62,7 +83,7 @@
     position:absolute; top:0; right:0; bottom:0;
     height:100%; width:auto; max-width:52%;
     object-fit:contain; object-position:right bottom;
-    transform:translate(-64px, 48px);
+    transform:translate(84px, 48px);
     -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
             mask-image: linear-gradient(to right, black 82%, transparent 100%);
     pointer-events:none;
@@ -110,6 +131,9 @@
   .cta-strip .wrap{ display:flex; flex-direction:column; gap:24px; align-items:flex-start; }
   @media(min-width:760px){ .cta-strip .wrap{ flex-direction:row; align-items:center; justify-content:space-between; } }
   .cta-strip p{ font-family:'Fraunces', serif; font-size:1.3rem; max-width:36ch; color:#EDEAE2; }
+  .cta-strip .cta-buttons{ display:flex; gap:12px; flex-wrap:wrap; }
+  .cta-strip .btn-ghost{ border-color:var(--paper); color:var(--paper); }
+  .cta-strip .btn-ghost:hover{ background:var(--paper); color:var(--navy); }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
   footer .wrap{ display:flex; flex-direction:column; gap:8px; }
@@ -121,7 +145,41 @@
 <header>
   <div class="nav">
     <a href="index.html.html" class="brand"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
-    <a href="index.html.html#products" class="back-link">← 제품 라인업으로</a>
+    <nav class="dn-nav">
+      <a href="index.html.html#about">회사소개</a>
+      <div class="dn-nav-item">
+        <a href="index.html.html#products">제품</a>
+        <div class="dn-dropdown">
+          <a href="nobreath.html">NObreath V2</a>
+          <a href="nobreath-v1.html">NObreath V1</a>
+          <a href="pitagoras.html">Pitagoras</a>
+          <a href="saltsignal.html">Salt Signal</a>
+          <a href="needle-counter.html">Needle Counter</a>
+          <a href="anatomy-model.html">교육용 인체모형</a>
+          <a href="cosmetics.html">화장품</a>
+        </div>
+      </div>
+      <div class="dn-nav-item">
+        <a href="index.html.html#partner">파트너사</a>
+        <div class="dn-dropdown">
+          <a href="index.html.html#about">해외 파트너십</a>
+          <a href="index.html.html#partner">국내 협력사</a>
+        </div>
+      </div>
+      <div class="dn-nav-item">
+        <a href="resources.html">자료실</a>
+        <div class="dn-dropdown">
+          <a href="resources.html#res-nobreath-v2">NObreath V2</a>
+          <a href="resources.html#res-nobreath-v1">NObreath V1</a>
+          <a href="resources.html#res-pitagoras">Pitagoras</a>
+          <a href="resources.html#res-saltsignal">Salt Signal</a>
+          <a href="resources.html#res-needle-counter">Needle Counter</a>
+          <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
+          <a href="resources.html#res-cosmetics">화장품</a>
+        </div>
+      </div>
+      <a href="index.html.html#contact">문의하기</a>
+    </nav>
   </div>
 </header>
 
@@ -193,7 +251,10 @@
 <section class="cta-strip">
   <div class="wrap">
     <p>"NObreath V2 도입 및 자세한 제품 자료가 필요하신가요?"</p>
-    <a href="index.html.html#contact" class="btn btn-primary" style="border-color:var(--paper);">문의하기</a>
+    <div class="cta-buttons">
+      <a href="index.html.html#contact" class="btn btn-primary" style="border-color:var(--paper);">문의하기</a>
+      <a href="resources.html#res-nobreath-v2" class="btn btn-ghost">관련 자료실</a>
+    </div>
   </div>
 </section>
 
