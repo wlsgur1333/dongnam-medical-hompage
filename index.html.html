@@ -143,7 +143,13 @@
   .section-desc{ margin-top:16px; color:var(--ink-soft); font-size:1rem; max-width:56ch; }
 
   /* ---------- ABOUT ---------- */
-  .about{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .about{ position:relative; background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
+  .about::before{
+    content:''; position:absolute; inset:0;
+    background:url('about-bg.jpg') center/cover no-repeat;
+    opacity:0.1; z-index:0;
+  }
+  .about > .wrap{ position:relative; z-index:1; }
   .about-grid{ display:grid; grid-template-columns:1fr; gap:48px; }
   @media(min-width:840px){ .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:center; } }
   .partners-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:64px; }
