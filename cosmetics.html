@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NObreath V2 | 동남메디칼</title>
+<title>화장품 | 동남메디칼</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -53,21 +53,7 @@
   .back-link{ font-size:0.88rem; color:var(--ink-soft); display:flex; align-items:center; gap:6px; }
   .back-link:hover{ color:var(--navy); }
 
-  .p-hero{
-    position:relative; overflow:hidden;
-    padding:120px 32px 90px;
-    background:var(--navy-deep);
-  }
-  .p-hero-photo{
-    position:absolute; top:0; right:0; bottom:0;
-    height:100%; width:auto; max-width:52%;
-    object-fit:contain; object-position:right bottom;
-    transform:translate(-64px, 48px);
-    -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
-            mask-image: linear-gradient(to right, black 82%, transparent 100%);
-    pointer-events:none;
-  }
-  @media(max-width:760px){ .p-hero-photo{ display:none; } }
+  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
@@ -126,17 +112,14 @@
 </header>
 
 <section class="p-hero">
-  <img class="p-hero-photo" src="nobreath-hero-cutout.png" alt="">
   <div class="p-hero-inner">
-    <div class="product-tag">Respiratory</div>
-    <h1 class="p-title">NObreath V2</h1>
-    <div class="p-origin">Bedfont Scientific · 영국</div>
+    <div class="product-tag">Cosmetics</div>
+    <h1 class="p-title">화장품</h1>
+    <div class="p-origin">해외 제조사 파트너십</div>
     <p class="p-lede">
-      NObreath V2는 호기 산화질소(FeNO, Fractional exhaled Nitric Oxide) 측정을 통해
-      기도 염증 상태를 비침습적으로 확인하는 호흡기 진단기기입니다. 천식 등 호흡기 질환의
-      진단과 치료 경과 관찰에 활용되며, 채혈이나 조직 검사 없이 간단한 호기 검사만으로
-      정확한 임상 데이터를 제공합니다. 호흡기내과뿐 아니라 소아청소년과(Pediatrics),
-      이비인후과(ENT)에서도 널리 사용되고 있습니다.
+      피부 컨디션에 맞춘 스킨케어 화장품 라인으로, 개인의 보습력과 피부 상태에 맞는
+      맞춤형 관리를 지원합니다. 피부과·에스테틱 등 다양한 현장에서 진단 결과를 바탕으로
+      한 스킨케어 상담에 활용할 수 있습니다.
     </p>
     <div class="p-cta">
       <a href="index.html.html#contact" class="btn btn-primary">도입 문의하기</a>
@@ -149,25 +132,25 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Key Features</div>
-      <h2 class="section-title">비침습적이고 정확한 기도 염증 진단</h2>
-      <p class="section-desc">NObreath V2가 임상 현장에서 신뢰받는 이유입니다.</p>
+      <h2 class="section-title">피부 컨디션에 맞춘 맞춤형 스킨케어</h2>
+      <p class="section-desc">화장품 라인이 다양한 현장에서 활용되는 이유입니다.</p>
     </div>
     <div class="feature-grid">
       <div class="feature-card">
-        <div class="feature-title">비침습 검사</div>
-        <p class="feature-desc">채혈이나 조직 검사 없이 간단한 호기 측정만으로 기도 염증 여부를 확인할 수 있습니다.</p>
+        <div class="feature-title">맞춤형 스킨케어</div>
+        <p class="feature-desc">피부 보습력과 컨디션에 맞춰 개인별 맞춤 관리를 지원합니다.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title">빠른 결과 확인</div>
-        <p class="feature-desc">검사 후 수분 내로 FeNO 수치를 확인할 수 있어 진료 흐름을 지연시키지 않습니다.</p>
+        <div class="feature-title">진단 연계 활용</div>
+        <p class="feature-desc">피부 컨디션 측정 결과를 바탕으로 한 상담과 함께 활용할 수 있습니다.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title">임상적 신뢰도</div>
-        <p class="feature-desc">Bedfont Scientific의 정밀 센서 기술을 기반으로 국제 가이드라인에 부합하는 측정값을 제공합니다.</p>
+        <div class="feature-title">다양한 현장 적용</div>
+        <p class="feature-desc">피부과, 에스테틱 등 다양한 현장에서 사용할 수 있습니다.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title">간편한 운용</div>
-        <p class="feature-desc">직관적인 조작 방식으로 병·의원 현장에서 별도 교육 없이도 손쉽게 사용할 수 있습니다.</p>
+        <div class="feature-title">안정적인 공급</div>
+        <p class="feature-desc">동남메디칼이 안정적인 수입·유통을 지원합니다.</p>
       </div>
     </div>
   </div>
@@ -180,11 +163,10 @@
       <h2 class="section-title">제품 개요</h2>
     </div>
     <ul class="specs-list">
-      <li><span>측정 항목</span><span>호기 산화질소 (FeNO)</span></li>
-      <li><span>검사 방식</span><span>비침습적 호기 검사</span></li>
-      <li><span>제조사</span><span>Bedfont Scientific Ltd (영국)</span></li>
-      <li><span>주요 활용 분야</span><span>천식 등 호흡기 질환 진단 및 경과 관찰</span></li>
-      <li><span>주요 진료과</span><span>호흡기내과, 소아청소년과(Pediatrics), 이비인후과(ENT)</span></li>
+      <li><span>제품 분류</span><span>Cosmetics</span></li>
+      <li><span>공급 형태</span><span>해외 제조사 파트너십</span></li>
+      <li><span>주요 활용</span><span>피부 보습력·컨디션 맞춤 스킨케어</span></li>
+      <li><span>활용 현장</span><span>피부과, 에스테틱 등</span></li>
       <li><span>국내 유통</span><span>동남메디칼 (공식 수입·유통)</span></li>
     </ul>
   </div>
@@ -192,7 +174,7 @@
 
 <section class="cta-strip">
   <div class="wrap">
-    <p>"NObreath V2 도입 및 자세한 제품 자료가 필요하신가요?"</p>
+    <p>"화장품 라인 도입 및 자세한 제품 자료가 필요하신가요?"</p>
     <a href="index.html.html#contact" class="btn btn-primary" style="border-color:var(--paper);">문의하기</a>
   </div>
 </section>

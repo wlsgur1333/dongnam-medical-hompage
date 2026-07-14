@@ -131,18 +131,45 @@
   .partner-logo{ max-width:220px; max-height:84px; width:auto; height:auto; object-fit:contain; }
 
   /* ---------- PRODUCTS ---------- */
-  .products-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-  @media(min-width:760px){ .products-grid{ grid-template-columns:repeat(3, 1fr); } }
+  .products-nav{ position:relative; }
+  .products-scroll{
+    overflow-x:auto; padding-bottom:20px; margin-bottom:-20px;
+    -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity;
+  }
+  .scroll-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:50%; z-index:2;
+    background:var(--navy); color:var(--paper); border:none;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem; line-height:1; cursor:pointer;
+    box-shadow:0 4px 14px rgba(11,27,51,0.25); transition:background .2s ease;
+  }
+  .scroll-arrow:hover{ background:var(--navy-deep); }
+  .scroll-arrow.prev{ left:-8px; }
+  .scroll-arrow.next{ right:-8px; }
+  @media(max-width:640px){ .scroll-arrow{ display:none; } }
+  .products-grid{ display:flex; gap:1px; background:var(--line); border:1px solid var(--line); width:max-content; }
   .product-card{
     display:block; background:var(--paper); padding:40px 32px; position:relative;
+    width:300px; flex:0 0 auto; scroll-snap-align:start;
     transition: background .25s ease;
   }
   .product-card:hover{ background:#F4F1EA; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); font-weight:600; }
+  .discontinued-tag{
+    display:inline-block; margin-left:8px; padding:2px 8px; border-radius:2px;
+    background:rgba(184,92,92,0.1); border:1px solid rgba(184,92,92,0.35);
+    color:#B85C5C; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase;
+    font-weight:600; vertical-align:middle;
+  }
   .product-name{ margin-top:14px; font-size:1.4rem; color:var(--navy); font-weight:500; }
   .product-origin{ margin-top:4px; font-size:0.82rem; color:var(--ink-soft); }
   .product-desc{ margin-top:16px; font-size:0.94rem; color:var(--ink-soft); }
   .product-line{ margin-top:24px; width:36px; height:1px; background:var(--green); }
+
+  .products-scroll::-webkit-scrollbar{ height:6px; }
+  .products-scroll::-webkit-scrollbar-track{ background:var(--line); }
+  .products-scroll::-webkit-scrollbar-thumb{ background:var(--navy); border-radius:3px; }
 
   /* ---------- PARTNER STRIP ---------- */
   .partner{ background:var(--navy); color:var(--paper); }
@@ -187,6 +214,7 @@
       <a href="#about">회사소개</a>
       <a href="#products">제품</a>
       <a href="#partner">파트너사</a>
+      <a href="resources.html">자료실</a>
       <a href="#contact">문의하기</a>
     </nav>
   </header>
@@ -274,11 +302,14 @@
       <p class="section-desc">동남메디칼이 국내에 유통 공급 및 관리하는 주요 제품군 입니다.</p>
     </div>
   </div>
-  <div class="wrap">
+  <div class="wrap products-nav">
+    <button class="scroll-arrow prev" type="button" onclick="scrollProducts(-1)" aria-label="이전 제품">‹</button>
+    <button class="scroll-arrow next" type="button" onclick="scrollProducts(1)" aria-label="다음 제품">›</button>
+    <div class="products-scroll" id="productsScroll">
     <div class="products-grid">
       <a class="product-card" href="nobreath.html">
         <div class="product-tag">Respiratory</div>
-        <div class="product-name">NObreath</div>
+        <div class="product-name">NObreath V2</div>
         <div class="product-origin">Bedfont Scientific · 영국</div>
         <p class="product-desc">
           호기 산화질소(FeNO) 측정을 통해 기도 염증 상태를 비침습적으로 확인하는
@@ -306,9 +337,60 @@
         </p>
         <div class="product-line"></div>
       </a>
+      <a class="product-card" href="nobreath-v1.html">
+        <div class="product-tag">Respiratory <span class="discontinued-tag">단종</span></div>
+        <div class="product-name">NObreath V1</div>
+        <div class="product-origin">Bedfont Scientific · 영국</div>
+        <p class="product-desc">
+          NObreath 시리즈의 이전 세대 모델로, 검증된 방식의 호기 산화질소(FeNO) 측정을
+          통해 기도 염증을 확인하는 호흡기 진단기기입니다.
+        </p>
+        <div class="product-line"></div>
+      </a>
+      <a class="product-card" href="needle-counter.html">
+        <div class="product-tag">Safety</div>
+        <div class="product-name">Needle Counter</div>
+        <div class="product-origin">해외 제조사 파트너십</div>
+        <p class="product-desc">
+          수술 중 사용되는 바늘 등 예리한 기구의 개수를 정확히 관리하여 체내 잔류
+          사고를 예방하는 수술실 안전 관리 기기입니다.
+        </p>
+        <div class="product-line"></div>
+      </a>
+      <a class="product-card" href="anatomy-model.html">
+        <div class="product-tag">Education</div>
+        <div class="product-name">교육용 인체모형</div>
+        <div class="product-origin">해외 제조사 파트너십</div>
+        <p class="product-desc">
+          의과대학·간호대학 등 교육 현장에서 활용되는 정밀 인체 해부 모형으로,
+          실습 및 교육 목적에 최적화되어 있습니다.
+        </p>
+        <div class="product-line"></div>
+      </a>
+      <a class="product-card" href="cosmetics.html">
+        <div class="product-tag">Cosmetics</div>
+        <div class="product-name">화장품</div>
+        <div class="product-origin">해외 제조사 파트너십</div>
+        <p class="product-desc">
+          피부 컨디션에 맞춘 스킨케어 화장품 라인으로, 피부과·에스테틱 등
+          다양한 현장에서 활용됩니다.
+        </p>
+        <div class="product-line"></div>
+      </a>
+    </div>
     </div>
   </div>
 </section>
+
+<script>
+  function scrollProducts(dir){
+    var el = document.getElementById('productsScroll');
+    var card = el.querySelector('.product-card');
+    if(!card) return;
+    var amount = card.offsetWidth + 1;
+    el.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  }
+</script>
 
 <section class="partner" id="partner">
   <div class="wrap">

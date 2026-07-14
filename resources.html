@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자료실 | 동남메디칼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #14284A;
+    --navy-deep: #0B1B33;
+    --gold: #A8823C;
+    --gold-soft: #C9A868;
+    --green: #2F6F4E;
+    --cream: #FFFFFF;
+    --paper: #FFFFFF;
+    --ink: #1C1F24;
+    --ink-soft: #565B63;
+    --line: #DCD8CF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'IBM Plex Sans KR', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 32px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--green); font-weight:600; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--green); display:inline-block; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 24px 20px 64px; }
+  @media(max-width:768px){ .nav{ padding:16px 20px; } }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
+  .brand img{ height:32px; width:auto; display:block; }
+  .back-link{ font-size:0.88rem; color:var(--ink-soft); display:flex; align-items:center; gap:6px; }
+  .back-link:hover{ color:var(--navy); }
+
+  .p-hero{ padding:80px 32px 56px; }
+  .p-hero-inner{ max-width:960px; margin:0 auto; }
+  h1.p-title{ font-size:clamp(2rem, 4vw, 2.8rem); font-weight:500; color:var(--navy); letter-spacing:-0.01em; }
+  .p-lede{ margin-top:20px; max-width:60ch; font-size:1.05rem; color:var(--ink-soft); }
+
+  .resources{ padding-bottom:96px; }
+  .resource-group{ margin-bottom:48px; }
+  .resource-group-head{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:16px;
+    padding-bottom:12px; border-bottom:1px solid var(--line);
+  }
+  .resource-group-name{ font-size:1.2rem; color:var(--navy); font-weight:500; }
+  .resource-group-origin{ font-size:0.82rem; color:var(--ink-soft); }
+  .resource-list{ list-style:none; border:1px solid var(--line); }
+  .resource-item{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:16px 20px; border-bottom:1px solid var(--line);
+  }
+  .resource-item:last-child{ border-bottom:none; }
+  .resource-item:hover{ background:#F7F5F1; }
+  .resource-info{ display:flex; align-items:baseline; gap:10px; }
+  .resource-name{ font-size:0.94rem; color:var(--ink); }
+  .resource-format{ font-size:0.76rem; color:var(--ink-soft); letter-spacing:0.04em; }
+  .resource-action{
+    font-size:0.8rem; font-weight:500; padding:7px 16px; border-radius:2px;
+    border:1px solid var(--line); color:var(--ink-soft); white-space:nowrap;
+  }
+  a.resource-action{
+    border-color:var(--navy); color:var(--navy); transition:all .2s ease;
+  }
+  a.resource-action:hover{ background:var(--navy); color:var(--paper); }
+
+  .cta-strip{ background:var(--navy); color:var(--paper); }
+  .cta-strip .wrap{ padding:56px 32px; display:flex; flex-direction:column; gap:24px; align-items:flex-start; }
+  @media(min-width:760px){ .cta-strip .wrap{ flex-direction:row; align-items:center; justify-content:space-between; } }
+  .cta-strip p{ font-family:'Fraunces', serif; font-size:1.2rem; max-width:36ch; color:#EDEAE2; }
+  .btn{
+    padding:14px 28px; border-radius:2px; font-size:0.92rem; font-weight:500;
+    border:1px solid var(--navy); transition:all .25s ease; display:inline-block;
+  }
+  .btn-primary{ background:var(--navy); color:var(--paper); }
+  .btn-primary:hover{ background:var(--navy-deep); }
+
+  footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
+  footer .wrap{ display:flex; flex-direction:column; gap:8px; }
+  @media(min-width:760px){ footer .wrap{ flex-direction:row; justify-content:space-between; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html.html" class="brand"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
+    <a href="index.html.html" class="back-link">← 홈으로</a>
+  </div>
+</header>
+
+<section class="p-hero">
+  <div class="p-hero-inner">
+    <div class="eyebrow">자료실</div>
+    <h1 class="p-title">제품별 다운로드 자료</h1>
+    <p class="p-lede">
+      동남메디칼이 취급하는 제품의 카탈로그, 사용설명서 등 자료를 제품별로 모아두었습니다.
+      필요한 자료가 준비되는 대로 순차적으로 업로드해 드릴게요.
+    </p>
+  </div>
+</section>
+
+<section class="resources">
+  <div class="wrap">
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">NObreath V2</div>
+        <div class="resource-group-origin">Bedfont Scientific · 영국</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <a class="resource-action" href="자료실/Nobreath V2/NObreathV2_Catalogue_A4_Dock 포함.pdf" download>다운로드</a>
+        </li>
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">사용 설명서</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">NObreath V1</div>
+        <div class="resource-group-origin">Bedfont Scientific · 영국</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">Pitagoras</div>
+        <div class="resource-group-origin">Pittan Co., Ltd. · 일본</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">사용 설명서</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">Salt Signal</div>
+        <div class="resource-group-origin">해외 제조사 파트너십</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">Needle Counter</div>
+        <div class="resource-group-origin">해외 제조사 파트너십</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">교육용 인체모형</div>
+        <div class="resource-group-origin">해외 제조사 파트너십</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="resource-group">
+      <div class="resource-group-head">
+        <div class="resource-group-name">화장품</div>
+        <div class="resource-group-origin">해외 제조사 파트너십</div>
+      </div>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <div class="resource-info"><span class="resource-name">제품 카탈로그</span><span class="resource-format">PDF</span></div>
+          <span class="resource-action">준비중</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <p>"필요한 자료를 바로 받아보고 싶으신가요?"</p>
+    <a href="index.html.html#contact" class="btn btn-primary">문의하기</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Dongnam Medical. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
