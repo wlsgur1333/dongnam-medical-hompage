@@ -180,6 +180,7 @@
     transition: background .25s ease;
   }
   .product-card:hover{ background:#F4F1EA; }
+  .card-thumb{ width:100%; height:110px; object-fit:contain; margin-bottom:24px; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); font-weight:600; }
   .discontinued-tag{
     display:inline-block; margin-left:8px; padding:2px 8px; border-radius:2px;
@@ -236,9 +237,9 @@
   <header class="dn-header">
     <div class="dn-logo"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
     <nav class="dn-nav">
-      <a href="#about">회사소개</a>
+      <a href="about.html">회사소개</a>
       <div class="dn-nav-item">
-        <a href="#products">제품</a>
+        <a href="products.html">제품</a>
         <div class="dn-dropdown">
           <a href="nobreath.html">NObreath V2</a>
           <a href="nobreath-v1.html">NObreath V1</a>
@@ -250,10 +251,10 @@
         </div>
       </div>
       <div class="dn-nav-item">
-        <a href="#partner">파트너사</a>
+        <a href="partner.html">파트너사</a>
         <div class="dn-dropdown">
-          <a href="#about">해외 파트너십</a>
-          <a href="#partner">국내 협력사</a>
+          <a href="partner.html#overseas">해외 파트너십</a>
+          <a href="partner.html#domestic">국내 협력사</a>
         </div>
       </div>
       <div class="dn-nav-item">
@@ -268,7 +269,7 @@
           <a href="resources.html#res-cosmetics">화장품</a>
         </div>
       </div>
-      <a href="#contact">문의하기</a>
+      <a href="contact.html">문의하기</a>
     </nav>
   </header>
 
@@ -361,6 +362,7 @@
     <div class="products-scroll" id="productsScroll">
     <div class="products-grid">
       <a class="product-card" href="nobreath.html">
+        <img class="card-thumb" src="nobreath-v2-thumb.png" alt="NObreath V2 장비 사진">
         <div class="product-tag">Respiratory</div>
         <div class="product-name">NObreath V2</div>
         <div class="product-origin">Bedfont Scientific · 영국</div>

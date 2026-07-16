@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문의하기 | 동남메디칼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #14284A;
+    --navy-deep: #0B1B33;
+    --gold: #A8823C;
+    --gold-soft: #C9A868;
+    --green: #2F6F4E;
+    --cream: #FFFFFF;
+    --paper: #FFFFFF;
+    --ink: #1C1F24;
+    --ink-soft: #565B63;
+    --line: #DCD8CF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'IBM Plex Sans KR', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--green); font-weight:600; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--green); display:inline-block; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 24px 20px 64px; }
+  @media(max-width:768px){ .nav{ padding:16px 20px; } }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
+  .brand img{ height:32px; width:auto; display:block; }
+
+  .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
+  .dn-nav a{ cursor:pointer; }
+  .dn-nav a:hover{ color:var(--navy); }
+  .dn-nav-item{ position:relative; padding-bottom:14px; margin-bottom:-14px; }
+  .dn-dropdown{
+    position:absolute; top:100%; left:50%;
+    transform:translateX(-50%) translateY(-6px);
+    background:var(--paper); border:1px solid var(--line); border-radius:4px;
+    min-width:190px; padding:8px 0;
+    box-shadow:0 12px 28px rgba(11,27,51,0.14);
+    opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+    z-index:60;
+  }
+  .dn-nav-item:hover .dn-dropdown{
+    opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0);
+  }
+  .dn-dropdown a{
+    display:block; padding:10px 20px; font-size:0.86rem; color:var(--ink-soft);
+    white-space:nowrap; cursor:pointer;
+  }
+  .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
+  @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
+
+  /* ---------- CONTACT: intro + action card ---------- */
+  .contact-section{ padding:100px 0 120px; }
+  .contact-layout{ display:grid; grid-template-columns:1fr; gap:56px; }
+  @media(min-width:900px){ .contact-layout{ grid-template-columns:0.9fr 1.1fr; align-items:start; } }
+
+  .contact-title{ font-size:clamp(1.9rem, 3.8vw, 2.6rem); font-weight:500; color:var(--navy); letter-spacing:-0.01em; }
+  .contact-desc{ margin-top:20px; color:var(--ink-soft); font-size:1rem; max-width:44ch; }
+
+  .contact-card{ border:1px solid var(--line); }
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:24px 28px; border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .contact-row:last-child{ border-bottom:none; }
+  a.contact-row:hover{ background:#FAF9F6; }
+  .contact-label{
+    font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:600;
+  }
+  .contact-value{ font-size:1.05rem; color:var(--navy); font-weight:500; text-align:right; }
+
+  footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
+  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 24px 0 64px; max-width:1120px; margin:0 auto; }
+  @media(min-width:760px){ .footer-inner{ flex-direction:row; align-items:flex-start; justify-content:space-between; } }
+  .footer-info{ display:flex; flex-wrap:wrap; gap:6px 18px; }
+  .footer-info span{
+    font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+    color:#6E7889; margin-right:6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html.html" class="brand"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
+    <nav class="dn-nav">
+      <a href="about.html">회사소개</a>
+      <div class="dn-nav-item">
+        <a href="products.html">제품</a>
+        <div class="dn-dropdown">
+          <a href="nobreath.html">NObreath V2</a>
+          <a href="nobreath-v1.html">NObreath V1</a>
+          <a href="pitagoras.html">Pitagoras</a>
+          <a href="saltsignal.html">Salt Signal</a>
+          <a href="needle-counter.html">Needle Counter</a>
+          <a href="anatomy-model.html">교육용 인체모형</a>
+          <a href="cosmetics.html">화장품</a>
+        </div>
+      </div>
+      <div class="dn-nav-item">
+        <a href="partner.html">파트너사</a>
+        <div class="dn-dropdown">
+          <a href="partner.html#overseas">해외 파트너십</a>
+          <a href="partner.html#domestic">국내 협력사</a>
+        </div>
+      </div>
+      <div class="dn-nav-item">
+        <a href="resources.html">자료실</a>
+        <div class="dn-dropdown">
+          <a href="resources.html#res-nobreath-v2">NObreath V2</a>
+          <a href="resources.html#res-nobreath-v1">NObreath V1</a>
+          <a href="resources.html#res-pitagoras">Pitagoras</a>
+          <a href="resources.html#res-saltsignal">Salt Signal</a>
+          <a href="resources.html#res-needle-counter">Needle Counter</a>
+          <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
+          <a href="resources.html#res-cosmetics">화장품</a>
+        </div>
+      </div>
+      <a href="contact.html">문의하기</a>
+    </nav>
+  </div>
+</header>
+
+<section class="contact-section">
+  <div class="wrap contact-layout">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h1 class="contact-title">도입 및 제품 문의</h1>
+      <p class="contact-desc">
+        병·의원 도입 문의, 제품 자료 요청은 아래 연락처로 편하게 연락 주세요.
+        담당자가 신속하게 안내해 드립니다.
+      </p>
+    </div>
+    <div class="contact-card">
+      <a class="contact-row" href="tel:031-908-7588">
+        <span class="contact-label">전화</span>
+        <span class="contact-value">031-908-7588</span>
+      </a>
+      <a class="contact-row" href="mailto:dnamed@hanmail.net">
+        <span class="contact-label">이메일</span>
+        <span class="contact-value">dnamed@hanmail.net</span>
+      </a>
+      <div class="contact-row">
+        <span class="contact-label">주소</span>
+        <span class="contact-value">경기도 고양시 일산 (본사)</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">운영시간</span>
+        <span class="contact-value">평일 09:00 – 18:00</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Dongnam Medical. All rights reserved.</div>
+    <div class="footer-info">
+      <div><span>Tel</span>031-908-7588</div>
+      <div><span>Fax</span>031-908-7589</div>
+      <div><span>Email</span>dnamed@hanmail.net</div>
+      <div><span>Address</span>경기도 고양시 일산 (본사)</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
