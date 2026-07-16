@@ -84,7 +84,7 @@
     transform:translateX(-50%); width:100vw; z-index:0;
     background-image:
       linear-gradient(to right, #FFFFFF 0%, #FFFFFF 32%, rgba(255,255,255,0.82) 48%, rgba(255,255,255,0.35) 64%, rgba(255,255,255,0) 80%),
-      url('hero-bg.jpg');
+      url('메인페이지 배경 사진/hero-bg.jpg');
     background-position: 0 0, center 75%;
     background-size: 100% 100%, cover;
     background-repeat: no-repeat, no-repeat;
@@ -146,7 +146,7 @@
   .about{ position:relative; background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
   .about::before{
     content:''; position:absolute; inset:0;
-    background:url('about-bg.jpg') center/cover no-repeat;
+    background:url('메인페이지 배경 사진/about-bg.jpg') center/cover no-repeat;
     opacity:0.1; z-index:0;
   }
   .about > .wrap{ position:relative; z-index:1; }
@@ -159,7 +159,7 @@
   .products-nav{ position:relative; }
   .products-scroll{
     overflow-x:auto; padding-bottom:20px; margin-bottom:-20px;
-    -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
   }
   .scroll-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
@@ -176,7 +176,8 @@
   .products-grid{ display:flex; gap:1px; background:var(--line); border:1px solid var(--line); width:max-content; }
   .product-card{
     display:block; background:var(--paper); padding:40px 32px; position:relative;
-    width:300px; flex:0 0 auto; scroll-snap-align:start;
+    width:300px; flex:0 0 auto;
+    text-align:center;
     transition: background .25s ease;
   }
   .product-card:hover{ background:#F4F1EA; }
@@ -191,7 +192,7 @@
   .product-name{ margin-top:14px; font-size:1.4rem; color:var(--navy); font-weight:500; }
   .product-origin{ margin-top:4px; font-size:0.82rem; color:var(--ink-soft); }
   .product-desc{ margin-top:16px; font-size:0.94rem; color:var(--ink-soft); }
-  .product-line{ margin-top:24px; width:36px; height:1px; background:var(--green); }
+  .product-line{ margin:24px auto 0; width:36px; height:1px; background:var(--green); }
 
   .products-scroll::-webkit-scrollbar{ height:6px; }
   .products-scroll::-webkit-scrollbar-track{ background:var(--line); }
@@ -210,6 +211,13 @@
   .partner-mark img{ max-height:26px; width:auto; display:block; }
 
   /* ---------- CONTACT ---------- */
+  #contact{ position:relative; overflow:hidden; }
+  #contact::before{
+    content:''; position:absolute; inset:0;
+    background:url('contact-bg.jpg') center/cover no-repeat;
+    opacity:0.1; z-index:0;
+  }
+  #contact > .wrap{ position:relative; z-index:1; }
   .contact-grid{ display:grid; grid-template-columns:1fr; gap:40px; }
   @media(min-width:840px){ .contact-grid{ grid-template-columns:1fr 1fr; } }
   .contact-list{ list-style:none; }
@@ -235,7 +243,7 @@
 
 <div class="dn-top">
   <header class="dn-header">
-    <div class="dn-logo"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
+    <div class="dn-logo"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
     <nav class="dn-nav">
       <a href="about.html">회사소개</a>
       <div class="dn-nav-item">
@@ -341,8 +349,8 @@
     </div>
     <div class="about-partners">
       <div class="partners-row">
-        <img class="partner-logo" src="Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
-        <img class="partner-logo" src="피탄 회사로고.png" alt="PITTAN">
+        <img class="partner-logo" src="로고/Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
+        <img class="partner-logo" src="로고/피탄 회사로고.png" alt="PITTAN">
       </div>
     </div>
   </div>
@@ -360,14 +368,14 @@
     <button class="scroll-arrow prev" type="button" onclick="scrollProducts(-1)" aria-label="이전 제품">‹</button>
     <button class="scroll-arrow next" type="button" onclick="scrollProducts(1)" aria-label="다음 제품">›</button>
     <div class="products-scroll" id="productsScroll">
-    <div class="products-grid">
+    <div class="products-grid" id="productsGrid">
       <a class="product-card" href="nobreath.html">
-        <img class="card-thumb" src="nobreath-v2-thumb.png" alt="NObreath V2 장비 사진">
+        <img class="card-thumb" src="제품 사진/Nobreath V2/nobreath-v2-thumb.png" alt="NObreath V2 장비 사진">
         <div class="product-tag">Respiratory</div>
         <div class="product-name">NObreath V2</div>
         <div class="product-origin">Bedfont Scientific · 영국</div>
         <p class="product-desc">
-          호기 산화질소(FeNO) 측정을 통해 기도 염증 상태를 비침습적으로 확인하는
+          호기 산화질소(FeNO) 측정을 통해 천식을 비침습적으로 진단하는
           호흡기 진단기기입니다.
         </p>
         <div class="product-line"></div>
@@ -398,7 +406,7 @@
         <div class="product-origin">Bedfont Scientific · 영국</div>
         <p class="product-desc">
           NObreath 시리즈의 이전 세대 모델로, 검증된 방식의 호기 산화질소(FeNO) 측정을
-          통해 기도 염증을 확인하는 호흡기 진단기기입니다.
+          통해 천식을 진단하는 호흡기 진단기기입니다.
         </p>
         <div class="product-line"></div>
       </a>
@@ -438,21 +446,63 @@
 </section>
 
 <script>
-  function scrollProducts(dir){
+  (function(){
     var el = document.getElementById('productsScroll');
-    var card = el.querySelector('.product-card');
-    if(!card) return;
-    var amount = card.offsetWidth + 1;
-    el.scrollBy({ left: dir * amount, behavior: 'smooth' });
-  }
+    var grid = document.getElementById('productsGrid');
+    if(!el || !grid) return;
+
+    // triplicate the card set: a backward buffer, the visible middle copy, and a forward buffer
+    var original = grid.innerHTML;
+    grid.innerHTML = original + original + original;
+
+    var allCards = Array.prototype.slice.call(grid.children);
+    var third = allCards.length / 3;
+    allCards.forEach(function(node, i){
+      if (i < third || i >= third * 2) {
+        node.setAttribute('aria-hidden', 'true');
+        node.setAttribute('tabindex', '-1');
+      }
+    });
+
+    function setWidth(){ return grid.scrollWidth / 3; }
+
+    // start inside the middle (visible) copy
+    el.scrollLeft = setWidth();
+
+    function wrap(){
+      var w = setWidth();
+      if (el.scrollLeft >= w * 2) {
+        el.scrollLeft -= w;
+      } else if (el.scrollLeft < w) {
+        el.scrollLeft += w;
+      }
+    }
+
+    if ('onscrollend' in window) {
+      el.addEventListener('scrollend', wrap);
+    } else {
+      var settleTimer;
+      el.addEventListener('scroll', function(){
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(wrap, 150);
+      });
+    }
+
+    window.scrollProducts = function(dir){
+      var card = grid.querySelector('.product-card');
+      if(!card) return;
+      var amount = card.offsetWidth + 1;
+      el.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    };
+  })();
 </script>
 
 <section class="partner" id="partner">
   <div class="wrap">
     <p class="partner-quote">"정확한 진단은 정확한 파트너십에서 시작됩니다."</p>
     <div class="partner-marks">
-      <div class="partner-mark"><img src="메디칼 탑 회사로고.png" alt="메디칼탑"></div>
-      <div class="partner-mark"><img src="협진 회사로고.png" alt="협진메디텍"></div>
+      <div class="partner-mark"><img src="로고/메디칼 탑 회사로고.png" alt="메디칼탑"></div>
+      <div class="partner-mark"><img src="로고/협진 회사로고.png" alt="협진메디텍"></div>
     </div>
   </div>
 </section>

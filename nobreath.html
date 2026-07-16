@@ -113,10 +113,15 @@
 
   .features{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .feature-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
-  @media(min-width:760px){ .feature-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media(min-width:760px){
+    .feature-grid{ grid-template-columns:repeat(2, 1fr); }
+    .feature-grid::after{ content:''; background:var(--paper); }
+  }
   .feature-card{ background:var(--paper); padding:32px; }
   .feature-title{ font-size:1.05rem; color:var(--navy); font-weight:500; }
   .feature-title::before{ content:''; display:block; width:28px; height:1px; background:var(--green); margin-bottom:16px; }
+  .feature-grid .feature-card:last-child{ text-align:center; }
+  .feature-grid .feature-card:last-child .feature-title::before{ margin-left:auto; margin-right:auto; }
   .feature-desc{ margin-top:10px; font-size:0.92rem; color:var(--ink-soft); }
 
   .specs-list{ list-style:none; max-width:760px; }
@@ -144,7 +149,7 @@
 
 <header>
   <div class="nav">
-    <a href="index.html.html" class="brand"><img src="동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
+    <a href="index.html.html" class="brand"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
     <nav class="dn-nav">
       <a href="about.html">회사소개</a>
       <div class="dn-nav-item">
@@ -184,15 +189,15 @@
 </header>
 
 <section class="p-hero">
-  <img class="p-hero-photo" src="nobreath-hero-cutout.png" alt="">
+  <img class="p-hero-photo" src="제품 사진/Nobreath V2/nobreath-hero-cutout.png" alt="">
   <div class="p-hero-inner">
     <div class="product-tag">Respiratory</div>
     <h1 class="p-title">NObreath V2</h1>
     <div class="p-origin">Bedfont Scientific · 영국</div>
     <p class="p-lede">
       NObreath V2는 호기 산화질소(FeNO, Fractional exhaled Nitric Oxide) 측정을 통해
-      기도 염증 상태를 비침습적으로 확인하는 호흡기 진단기기입니다. 천식 등 호흡기 질환의
-      진단과 치료 경과 관찰에 활용되며, 채혈이나 조직 검사 없이 간단한 호기 검사만으로
+      천식을 비침습적으로 진단하는 호흡기 진단기기입니다. 천식 등 호흡기 질환의
+      진단과 치료 경과 관찰에 활용되며, 유도객담검사 없이 간단한 호기 검사만으로
       정확한 임상 데이터를 제공합니다. 호흡기내과뿐 아니라 소아청소년과(Pediatrics),
       이비인후과(ENT)에서도 널리 사용되고 있습니다.
     </p>
@@ -207,25 +212,29 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Key Features</div>
-      <h2 class="section-title">비침습적이고 정확한 기도 염증 진단</h2>
+      <h2 class="section-title">비침습적이고 정확한 천식 진단</h2>
       <p class="section-desc">NObreath V2가 임상 현장에서 신뢰받는 이유입니다.</p>
     </div>
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-title">비침습 검사</div>
-        <p class="feature-desc">채혈이나 조직 검사 없이 간단한 호기 측정만으로 기도 염증 여부를 확인할 수 있습니다.</p>
+        <p class="feature-desc">유도객담검사 없이 간단한 호기 측정만으로 천식 여부를 진단할 수 있으며, 호산구 수치의 증가와 비례하여 측정값이 올라갑니다.</p>
       </div>
       <div class="feature-card">
         <div class="feature-title">빠른 결과 확인</div>
-        <p class="feature-desc">검사 후 수분 내로 FeNO 수치를 확인할 수 있어 진료 흐름을 지연시키지 않습니다.</p>
+        <p class="feature-desc">검사 후 기다림 없이 즉시 결과를 확인할 수 있어 진료 흐름을 지연시키지 않습니다.</p>
       </div>
       <div class="feature-card">
         <div class="feature-title">임상적 신뢰도</div>
-        <p class="feature-desc">Bedfont Scientific의 정밀 센서 기술을 기반으로 국제 가이드라인에 부합하는 측정값을 제공합니다.</p>
+        <p class="feature-desc">Bedfont Scientific의 가스 분석 기술을 기반으로 국제 가이드라인에 부합하는 측정값을 제공합니다.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title">간편한 운용</div>
-        <p class="feature-desc">직관적인 조작 방식으로 병·의원 현장에서 별도 교육 없이도 손쉽게 사용할 수 있습니다.</p>
+        <div class="feature-title">포터블 사용</div>
+        <p class="feature-desc">포터블 사용이 가능하여 검사실 공간의 제약 없이 상황에 따라 이동하여 검사할 수 있습니다.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">무제한 검사</div>
+        <p class="feature-desc">검사 횟수 제한 없이 무제한으로 검사할 수 있어 지속적인 모니터링에도 부담 없이 활용할 수 있습니다.</p>
       </div>
     </div>
   </div>
@@ -240,10 +249,11 @@
     <ul class="specs-list">
       <li><span>측정 항목</span><span>호기 산화질소 (FeNO)</span></li>
       <li><span>검사 방식</span><span>비침습적 호기 검사</span></li>
+      <li><span>검사 횟수</span><span>제한 없이 무제한 검사 가능</span></li>
       <li><span>제조사</span><span>Bedfont Scientific Ltd (영국)</span></li>
       <li><span>주요 활용 분야</span><span>천식 등 호흡기 질환 진단 및 경과 관찰</span></li>
       <li><span>주요 진료과</span><span>호흡기내과, 소아청소년과(Pediatrics), 이비인후과(ENT)</span></li>
-      <li><span>국내 유통</span><span>동남메디칼 (공식 수입·유통)</span></li>
+      <li><span>국내 수입사</span><span>동남메디칼 (공식 수입·유통)</span></li>
     </ul>
   </div>
 </section>
