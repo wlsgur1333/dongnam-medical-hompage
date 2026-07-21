@@ -157,26 +157,27 @@
     .dn-logo{ font-size:1.05rem; gap:8px; white-space:nowrap; }
     .dn-logo img{ height:26px; }
     .dn-nav{
-      display:none; position:fixed; inset:0; z-index:1000;
+      display:none; position:fixed; top:0; left:0; right:0; height:100vh; height:100dvh; z-index:1000;
       flex-direction:column; gap:0; background:var(--paper);
-      overflow-y:auto; padding:80px 0 40px;
+      overflow-y:auto; -webkit-overflow-scrolling:touch; padding:80px 0 40px;
     }
     .dn-nav.open{ display:flex; }
     .dn-nav-item{
       position:relative; padding-bottom:0; margin-bottom:0;
-      border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center;
+      border-bottom:1px solid var(--line); display:block;
     }
     .dn-nav-item > a{
-      display:block; flex:1 1 auto; padding:18px 28px; font-size:1.05rem; color:var(--navy); font-weight:500;
+      display:block; padding:18px 60px 18px 28px; font-size:1.05rem; color:var(--navy); font-weight:500;
     }
     .dn-expand{
+      position:absolute; top:0; right:0;
       display:flex; align-items:center; justify-content:center;
-      width:52px; height:52px; flex:0 0 auto; font-size:1.4rem; line-height:1;
+      width:52px; height:52px; font-size:1.4rem; line-height:1;
     }
     .dn-expand::before{ content:'+'; }
     .dn-nav-item.dn-expanded .dn-expand::before{ content:'\2212'; }
     .dn-dropdown{
-      position:static; transform:none; width:100%; flex-basis:100%;
+      position:static; transform:none; width:100%; display:block;
       opacity:1; visibility:visible; pointer-events:auto;
       box-shadow:none; border:none; border-radius:0; min-width:0;
       max-height:0; overflow:hidden; padding:0; transition:max-height .25s ease;
@@ -201,7 +202,7 @@
       </div>
       <div class="dn-nav-item">
         <a href="products.html">제품</a>
-        <button class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
+        <button type="button" class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
         <div class="dn-dropdown">
           <a href="nobreath.html">NObreath V2</a>
           <a href="nobreath-v1.html">NObreath V1</a>
@@ -214,7 +215,7 @@
       </div>
       <div class="dn-nav-item">
         <a href="partner.html">파트너사</a>
-        <button class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
+        <button type="button" class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
         <div class="dn-dropdown">
           <a href="partner.html#overseas">해외 파트너십</a>
           <a href="partner.html#domestic">국내 협력사</a>
@@ -222,7 +223,7 @@
       </div>
       <div class="dn-nav-item">
         <a href="resources.html">자료실</a>
-        <button class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
+        <button type="button" class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
         <div class="dn-dropdown">
           <a href="resources.html#res-nobreath-v2">NObreath V2</a>
           <a href="resources.html#res-nobreath-v1">NObreath V1</a>
@@ -240,7 +241,7 @@
         </div>
       </div>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
