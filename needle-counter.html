@@ -74,7 +74,17 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; overflow:hidden; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero-photo{
+    position:absolute; top:0; right:0; bottom:0;
+    height:100%; width:auto; max-width:52%;
+    object-fit:contain; object-position:right bottom;
+    transform:translate(-220px, 48px);
+    -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+            mask-image: linear-gradient(to right, black 82%, transparent 100%);
+    pointer-events:none;
+  }
+  @media(max-width:760px){ .p-hero-photo{ display:none; } }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
@@ -180,14 +190,16 @@
 </header>
 
 <section class="p-hero">
+  <img class="p-hero-photo" src="제품 사진/Needle counter/needle-counter-hero.png" alt="">
   <div class="p-hero-inner">
     <div class="product-tag">Safety</div>
     <h1 class="p-title">Needle Counter</h1>
-    <div class="p-origin">해외 제조사 파트너십</div>
+    <div class="p-origin">Meifu Medical Technology (Suzhou) · 중국</div>
     <p class="p-lede">
       Needle Counter는 수술 중 사용되는 바늘 등 예리한 기구의 개수를 정확히 관리하여
-      체내 잔류 사고를 예방하는 수술실 안전 관리 기기입니다. 정확한 계수 관리를 통해
-      의료진이 안심하고 수술에 집중할 수 있는 환경을 지원합니다.
+      체내 잔류 사고를 예방하는 수술실 소모품입니다. EO(에틸렌옥사이드) 가스로 멸균
+      처리되어 있어 개봉 후 바로 사용할 수 있으며, 20 Count·40 Count 두 가지 모델로
+      수술 규모에 맞춰 선택할 수 있습니다.
     </p>
     <div class="p-cta">
       <a href="index.html.html#contact" class="btn btn-primary">도입 문의하기</a>
@@ -213,12 +225,12 @@
         <p class="feature-desc">체내 잔류 사고를 예방하여 환자와 의료진 모두의 안전을 높입니다.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title">간편한 기록 관리</div>
-        <p class="feature-desc">계수 기록을 간편하게 관리하여 수술 프로세스의 신뢰도를 높입니다.</p>
+        <div class="feature-title">EO 가스 멸균 처리</div>
+        <p class="feature-desc">출고 전 EO(에틸렌옥사이드) 가스로 멸균 처리되어 있어 개봉 후 바로 수술실에서 사용할 수 있습니다.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title">다양한 진료과 적용</div>
-        <p class="feature-desc">외과, 산부인과 등 다양한 수술 환경에서 활용할 수 있습니다.</p>
+        <div class="feature-title">20 Count·40 Count 모델</div>
+        <p class="feature-desc">수술 규모와 사용되는 바늘 등 기구 수량에 맞춰 20 Count, 40 Count 두 모델 중 선택할 수 있습니다.</p>
       </div>
     </div>
   </div>
@@ -231,8 +243,10 @@
       <h2 class="section-title">제품 개요</h2>
     </div>
     <ul class="specs-list">
-      <li><span>제품 분류</span><span>Safety</span></li>
-      <li><span>공급 형태</span><span>해외 제조사 파트너십</span></li>
+      <li><span>제품 분류</span><span>Safety (수술실 소모품)</span></li>
+      <li><span>모델 구성</span><span>20 Count / 40 Count</span></li>
+      <li><span>멸균 방식</span><span>EO(에틸렌옥사이드) 가스 멸균</span></li>
+      <li><span>제조사</span><span>Meifu Medical Technology (Suzhou) Co., Ltd. (중국)</span></li>
       <li><span>주요 활용</span><span>수술실 바늘·기구 계수 관리</span></li>
       <li><span>국내 수입사</span><span>동남메디칼 (공식 수입·유통)</span></li>
     </ul>
