@@ -181,7 +181,15 @@
     transition: background .25s ease;
   }
   .product-card:hover{ background:#F4F1EA; }
-  .card-thumb{ width:100%; height:110px; object-fit:contain; margin-bottom:24px; }
+  .card-thumb-slot{
+    height:220px; margin-bottom:24px;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  .card-thumb{ width:auto; max-width:100%; height:110px; object-fit:contain; }
+  .card-thumb.thumb-nobreath-v2{ height:121px; }
+  .card-thumb.thumb-pitagoras{ height:132px; }
+  .card-thumb.thumb-saltsignal{ height:220px; }
+  .card-thumb.thumb-nobreath-v1{ height:121px; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); font-weight:600; }
   .discontinued-tag{
     display:inline-block; margin-left:8px; padding:2px 8px; border-radius:2px;
@@ -380,7 +388,7 @@
     <div class="products-scroll" id="productsScroll">
     <div class="products-grid" id="productsGrid">
       <a class="product-card" href="nobreath.html">
-        <img class="card-thumb" src="제품 사진/Nobreath V2/nobreath-v2-thumb.png" alt="NObreath V2 장비 사진">
+        <div class="card-thumb-slot"><img class="card-thumb thumb-nobreath-v2" src="제품 사진/Nobreath V2/nobreath-v2-thumb.png" alt="NObreath V2 장비 사진"></div>
         <div class="product-tag">Respiratory</div>
         <div class="product-name">NObreath V2</div>
         <div class="product-origin">Bedfont Scientific · 영국</div>
@@ -391,6 +399,7 @@
         <div class="product-line"></div>
       </a>
       <a class="product-card" href="pitagoras.html">
+        <div class="card-thumb-slot"><img class="card-thumb thumb-pitagoras" src="제품 사진/Pitagoras/pitagoras-thumb.png" alt="Pitagoras 장비 사진"></div>
         <div class="product-tag">Wellness</div>
         <div class="product-name">Pitagoras</div>
         <div class="product-origin">Pittan Co., Ltd. · 일본</div>
@@ -401,6 +410,7 @@
         <div class="product-line"></div>
       </a>
       <a class="product-card" href="saltsignal.html">
+        <div class="card-thumb-slot"><img class="card-thumb thumb-saltsignal" src="제품 사진/Salt Signal/saltsignal-thumb.png" alt="Salt Signal 제품 사진"></div>
         <div class="product-tag">Monitoring</div>
         <div class="product-name">Salt Signal</div>
         <div class="product-origin">해외 제조사 파트너십</div>
@@ -411,6 +421,7 @@
         <div class="product-line"></div>
       </a>
       <a class="product-card" href="nobreath-v1.html">
+        <div class="card-thumb-slot"><img class="card-thumb thumb-nobreath-v1" src="제품 사진/Nobreath V1/nobreath-v1-thumb.png" alt="NObreath V1 장비 사진"></div>
         <div class="product-tag">Respiratory <span class="discontinued-tag">단종</span></div>
         <div class="product-name">NObreath V1</div>
         <div class="product-origin">Bedfont Scientific · 영국</div>

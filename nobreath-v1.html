@@ -74,7 +74,17 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; overflow:hidden; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero-photo{
+    position:absolute; top:0; right:0; bottom:0;
+    height:100%; width:auto; max-width:52%;
+    object-fit:contain; object-position:right bottom;
+    transform:translate(-160px, 48px);
+    -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+            mask-image: linear-gradient(to right, black 82%, transparent 100%);
+    pointer-events:none;
+  }
+  @media(max-width:760px){ .p-hero-photo{ display:none; } }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   .discontinued-badge{
@@ -186,6 +196,7 @@
 </header>
 
 <section class="p-hero">
+  <img class="p-hero-photo" src="제품 사진/Nobreath V1/nobreath-v1-hero-cutout.png" alt="">
   <div class="p-hero-inner">
     <div class="product-tag">Respiratory <span class="discontinued-badge">단종</span></div>
     <h1 class="p-title">NObreath V1</h1>

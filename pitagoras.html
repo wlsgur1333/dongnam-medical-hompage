@@ -74,8 +74,22 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); overflow:hidden; }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
+  .p-hero-text{ max-width:520px; }
+  .p-hero-photo{
+    display:none;
+  }
+  @media(min-width:900px){
+    .p-hero-photo{
+      display:block; position:absolute; top:50%; right:-220px;
+      transform:translateY(-50%); width:792px; max-width:42vw; z-index:0;
+    }
+  }
+  .p-hero-photo img{ width:100%; height:auto; display:block; }
+  @media(max-width:899px){
+    .p-hero-photo{ display:block; max-width:360px; margin:32px auto 0; position:static; transform:none; }
+  }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
   .p-origin{ margin-top:10px; font-size:0.95rem; color:#C7CCD6; }
@@ -181,18 +195,23 @@
 
 <section class="p-hero">
   <div class="p-hero-inner">
-    <div class="product-tag">Wellness</div>
-    <h1 class="p-title">Pitagoras</h1>
-    <div class="p-origin">Pittan Co., Ltd. · 일본</div>
-    <p class="p-lede">
-      Pitagoras는 얼굴에서 채취한 미세한 땀 속 세린, 글라이신, 히스티딘 등 아미노산 5종을
-      효소 발색 반응과 광학 측정으로 분석하는 스마트 웰니스 디바이스입니다. 피부 보습력과
-      컨디션에 대한 참고 정보를 제공하여, 피부과·에스테틱·헬스장 등 다양한 현장에서
-      맞춤형 스킨케어 및 컨디션 관리 상담에 활용할 수 있습니다.
-    </p>
-    <div class="p-cta">
-      <a href="index.html.html#contact" class="btn btn-primary">도입 문의하기</a>
-      <a href="index.html.html#products" class="btn btn-ghost">다른 제품 보기</a>
+    <div class="p-hero-text">
+      <div class="product-tag">Wellness</div>
+      <h1 class="p-title">Pitagoras</h1>
+      <div class="p-origin">Pittan Co., Ltd. · 일본</div>
+      <p class="p-lede">
+        Pitagoras는 얼굴에서 채취한 미세한 땀 속 세린, 글라이신, 히스티딘 등 아미노산 5종을
+        효소 발색 반응과 광학 측정으로 분석하는 스마트 웰니스 디바이스입니다. 피부 보습력과
+        컨디션에 대한 참고 정보를 제공하여, 피부과·에스테틱·헬스장 등 다양한 현장에서
+        맞춤형 스킨케어 및 컨디션 관리 상담에 활용할 수 있습니다.
+      </p>
+      <div class="p-cta">
+        <a href="index.html.html#contact" class="btn btn-primary">도입 문의하기</a>
+        <a href="index.html.html#products" class="btn btn-ghost">다른 제품 보기</a>
+      </div>
+    </div>
+    <div class="p-hero-photo">
+      <img src="제품 사진/Pitagoras/pitagoras-hero.png" alt="Pitagoras 장비 상세 사진">
     </div>
   </div>
 </section>
