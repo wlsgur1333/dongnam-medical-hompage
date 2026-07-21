@@ -74,7 +74,18 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; overflow:hidden; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero-photo{
+    position:absolute; top:0; right:0; bottom:0;
+    height:100%; width:auto; max-width:52%;
+    object-fit:contain; object-position:right bottom;
+    transform-origin:right bottom;
+    transform:translate(-400px, 48px) scale(1.3);
+    -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+            mask-image: linear-gradient(to right, black 82%, transparent 100%);
+    pointer-events:none;
+  }
+  @media(max-width:760px){ .p-hero-photo{ display:none; } }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
@@ -180,6 +191,7 @@
 </header>
 
 <section class="p-hero">
+  <img class="p-hero-photo" src="제품 사진/Salt Signal/saltsignal-hero.png" alt="">
   <div class="p-hero-inner">
     <div class="product-tag">Monitoring</div>
     <h1 class="p-title">Salt Signal</h1>
