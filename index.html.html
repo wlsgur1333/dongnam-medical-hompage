@@ -178,9 +178,12 @@
     display:block; background:var(--paper); padding:40px 32px; position:relative;
     width:300px; flex:0 0 auto;
     text-align:center;
-    transition: background .25s ease;
+    transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
   }
-  .product-card:hover{ background:#F4F1EA; }
+  .product-card:hover{
+    background:#F4F1EA; transform:scale(1.045); z-index:5;
+    box-shadow:0 14px 32px rgba(11,27,51,0.14);
+  }
   .card-thumb-slot{
     height:220px; margin-bottom:24px;
     display:flex; align-items:flex-end; justify-content:center;
