@@ -162,6 +162,56 @@
     font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
     color:#6E7889; margin-right:6px;
   }
+
+  /* ---------- MOBILE NAV ---------- */
+  .nav-toggle{
+    display:none; background:none; border:none; cursor:pointer;
+    width:36px; height:32px; padding:0; position:relative; z-index:1001; flex:0 0 auto;
+  }
+  .nav-toggle span{
+    display:block; width:22px; height:2px; background:var(--navy);
+    margin:5px auto; transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-toggle.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2){ opacity:0; }
+  .nav-toggle.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .dn-expand{ display:none; background:none; border:none; cursor:pointer; color:var(--ink-soft); }
+  body.dn-nav-open{ overflow:hidden; }
+  @media(max-width:768px){
+    .nav-toggle{ display:block; }
+    .brand{ font-size:1.05rem; gap:8px; white-space:nowrap; }
+    .brand img{ height:26px; }
+    .dn-logo{ font-size:1.05rem; gap:8px; white-space:nowrap; }
+    .dn-logo img{ height:26px; }
+    .dn-nav{
+      display:none; position:fixed; inset:0; z-index:1000;
+      flex-direction:column; gap:0; background:var(--paper);
+      overflow-y:auto; padding:80px 0 40px;
+    }
+    .dn-nav.open{ display:flex; }
+    .dn-nav-item{
+      position:relative; padding-bottom:0; margin-bottom:0;
+      border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center;
+    }
+    .dn-nav-item > a{
+      display:block; flex:1 1 auto; padding:18px 28px; font-size:1.05rem; color:var(--navy); font-weight:500;
+    }
+    .dn-expand{
+      display:flex; align-items:center; justify-content:center;
+      width:52px; height:52px; flex:0 0 auto; font-size:1.4rem; line-height:1;
+    }
+    .dn-expand::before{ content:'+'; }
+    .dn-nav-item.dn-expanded .dn-expand::before{ content:'\2212'; }
+    .dn-dropdown{
+      position:static; transform:none; width:100%; flex-basis:100%;
+      opacity:1; visibility:visible; pointer-events:auto;
+      box-shadow:none; border:none; border-radius:0; min-width:0;
+      max-height:0; overflow:hidden; padding:0; transition:max-height .25s ease;
+      background:var(--cream);
+    }
+    .dn-nav-item.dn-expanded .dn-dropdown{ max-height:600px; padding:4px 0 8px; }
+    .dn-dropdown a{ padding:12px 28px 12px 44px; font-size:0.95rem; }
+  }
 </style>
 </head>
 <body>
@@ -169,7 +219,7 @@
 <header>
   <div class="nav">
     <a href="index.html.html" class="brand"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
-    <nav class="dn-nav">
+    <nav class="dn-nav" id="dnNav">
       <div class="dn-nav-item">
         <a href="about.html">회사소개</a>
         <div class="dn-dropdown">
@@ -178,6 +228,7 @@
       </div>
       <div class="dn-nav-item">
         <a href="products.html">제품</a>
+        <button class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
         <div class="dn-dropdown">
           <a href="nobreath.html">NObreath V2</a>
           <a href="nobreath-v1.html">NObreath V1</a>
@@ -190,6 +241,7 @@
       </div>
       <div class="dn-nav-item">
         <a href="partner.html">파트너사</a>
+        <button class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
         <div class="dn-dropdown">
           <a href="partner.html#overseas">해외 파트너십</a>
           <a href="partner.html#domestic">국내 협력사</a>
@@ -197,6 +249,7 @@
       </div>
       <div class="dn-nav-item">
         <a href="resources.html">자료실</a>
+        <button class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
         <div class="dn-dropdown">
           <a href="resources.html#res-nobreath-v2">NObreath V2</a>
           <a href="resources.html#res-nobreath-v1">NObreath V1</a>
@@ -214,6 +267,9 @@
         </div>
       </div>
     </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -325,5 +381,36 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('dnNav');
+  if(!toggle || !nav) return;
+  function closeMenu(){
+    nav.classList.remove('open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded','false');
+    document.body.classList.remove('dn-nav-open');
+  }
+  toggle.addEventListener('click', function(){
+    var isOpen = nav.classList.toggle('open');
+    toggle.classList.toggle('active', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('dn-nav-open', isOpen);
+  });
+  nav.querySelectorAll('.dn-expand').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var item = btn.closest('.dn-nav-item');
+      var wasExpanded = item.classList.contains('dn-expanded');
+      nav.querySelectorAll('.dn-nav-item.dn-expanded').forEach(function(i){ i.classList.remove('dn-expanded'); });
+      if(!wasExpanded){ item.classList.add('dn-expanded'); }
+    });
+  });
+  nav.querySelectorAll('.dn-nav-item > a, .dn-dropdown a').forEach(function(link){
+    link.addEventListener('click', function(){ setTimeout(closeMenu, 0); });
+  });
+})();
+</script>
 </body>
 </html>
