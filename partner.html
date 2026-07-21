@@ -151,21 +151,24 @@
     .dn-nav-item > a{
       display:block; padding:18px 60px 18px 28px; font-size:1.05rem; color:var(--navy); font-weight:500;
     }
+    .dn-nav-item details{ display:block; }
+    .dn-nav-item details > summary{ list-style:none; cursor:pointer; }
+    .dn-nav-item details > summary::-webkit-details-marker{ display:none; }
     .dn-expand{
       position:absolute; top:0; right:0;
       display:flex; align-items:center; justify-content:center;
       width:52px; height:52px; font-size:1.4rem; line-height:1;
     }
     .dn-expand::before{ content:'+'; }
-    .dn-nav-item.dn-expanded .dn-expand::before{ content:'\2212'; }
+    details[open] > .dn-expand::before{ content:'\2212'; }
     .dn-dropdown{
-      position:static; transform:none; width:100%; display:block;
+      position:static; transform:none; width:100%; display:none;
       opacity:1; visibility:visible; pointer-events:auto;
       box-shadow:none; border:none; border-radius:0; min-width:0;
-      max-height:0; overflow:hidden; padding:0; transition:max-height .25s ease;
+      padding:4px 0 8px;
       background:var(--cream);
     }
-    .dn-nav-item.dn-expanded .dn-dropdown{ max-height:600px; padding:4px 0 8px; }
+    details[open] > .dn-dropdown{ display:block; }
     .dn-dropdown a{ padding:12px 28px 12px 44px; font-size:0.95rem; }
   }
 </style>
@@ -184,37 +187,43 @@
       </div>
       <div class="dn-nav-item">
         <a href="products.html">제품</a>
-        <button type="button" class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
-        <div class="dn-dropdown">
-          <a href="nobreath.html">NObreath V2</a>
-          <a href="nobreath-v1.html">NObreath V1</a>
-          <a href="pitagoras.html">Pitagoras</a>
-          <a href="saltsignal.html">Salt Signal</a>
-          <a href="needle-counter.html">Needle Counter</a>
-          <a href="anatomy-model.html">교육용 인체모형</a>
-          <a href="cosmetics.html">화장품</a>
-        </div>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+          <div class="dn-dropdown">
+            <a href="nobreath.html">NObreath V2</a>
+            <a href="nobreath-v1.html">NObreath V1</a>
+            <a href="pitagoras.html">Pitagoras</a>
+            <a href="saltsignal.html">Salt Signal</a>
+            <a href="needle-counter.html">Needle Counter</a>
+            <a href="anatomy-model.html">교육용 인체모형</a>
+            <a href="cosmetics.html">화장품</a>
+          </div>
+        </details>
       </div>
       <div class="dn-nav-item">
         <a href="partner.html">파트너사</a>
-        <button type="button" class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
-        <div class="dn-dropdown">
-          <a href="partner.html#overseas">해외 파트너십</a>
-          <a href="partner.html#domestic">국내 협력사</a>
-        </div>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+          <div class="dn-dropdown">
+            <a href="partner.html#overseas">해외 파트너십</a>
+            <a href="partner.html#domestic">국내 협력사</a>
+          </div>
+        </details>
       </div>
       <div class="dn-nav-item">
         <a href="resources.html">자료실</a>
-        <button type="button" class="dn-expand" aria-label="하위 메뉴 펼치기"></button>
-        <div class="dn-dropdown">
-          <a href="resources.html#res-nobreath-v2">NObreath V2</a>
-          <a href="resources.html#res-nobreath-v1">NObreath V1</a>
-          <a href="resources.html#res-pitagoras">Pitagoras</a>
-          <a href="resources.html#res-saltsignal">Salt Signal</a>
-          <a href="resources.html#res-needle-counter">Needle Counter</a>
-          <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
-          <a href="resources.html#res-cosmetics">화장품</a>
-        </div>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+          <div class="dn-dropdown">
+            <a href="resources.html#res-nobreath-v2">NObreath V2</a>
+            <a href="resources.html#res-nobreath-v1">NObreath V1</a>
+            <a href="resources.html#res-pitagoras">Pitagoras</a>
+            <a href="resources.html#res-saltsignal">Salt Signal</a>
+            <a href="resources.html#res-needle-counter">Needle Counter</a>
+            <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
+            <a href="resources.html#res-cosmetics">화장품</a>
+          </div>
+        </details>
       </div>
       <div class="dn-nav-item">
         <a href="contact.html">문의하기</a>
@@ -288,15 +297,6 @@
     toggle.classList.toggle('active', isOpen);
     toggle.setAttribute('aria-expanded', isOpen);
     document.body.classList.toggle('dn-nav-open', isOpen);
-  });
-  nav.querySelectorAll('.dn-expand').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      var item = btn.closest('.dn-nav-item');
-      var wasExpanded = item.classList.contains('dn-expanded');
-      nav.querySelectorAll('.dn-nav-item.dn-expanded').forEach(function(i){ i.classList.remove('dn-expanded'); });
-      if(!wasExpanded){ item.classList.add('dn-expanded'); }
-    });
   });
   nav.querySelectorAll('.dn-nav-item > a, .dn-dropdown a').forEach(function(link){
     link.addEventListener('click', function(){ setTimeout(closeMenu, 0); });
