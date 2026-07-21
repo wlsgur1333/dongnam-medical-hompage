@@ -74,7 +74,18 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; overflow:hidden; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero-photo{
+    position:absolute; top:0; right:0; bottom:0;
+    height:100%; width:auto; max-width:52%;
+    object-fit:contain; object-position:right bottom;
+    transform-origin:right bottom;
+    transform:translate(-220px, 8px) scale(0.8);
+    -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+            mask-image: linear-gradient(to right, black 82%, transparent 100%);
+    pointer-events:none;
+  }
+  @media(max-width:760px){ .p-hero-photo{ display:none; } }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
@@ -180,10 +191,11 @@
 </header>
 
 <section class="p-hero">
+  <img class="p-hero-photo" src="제품 사진/인체모형/anatomy-model-hero.png" alt="">
   <div class="p-hero-inner">
     <div class="product-tag">Education</div>
     <h1 class="p-title">교육용 인체모형</h1>
-    <div class="p-origin">해외 제조사 파트너십</div>
+    <div class="p-origin">동남메디칼 · 한국</div>
     <p class="p-lede">
       의과대학, 간호대학 등 교육 현장에서 활용되는 정밀 인체 해부 모형으로, 실습 및
       교육 목적에 최적화되어 있습니다. 실제 인체 구조를 정교하게 구현하여 학생들의
@@ -232,9 +244,8 @@
     </div>
     <ul class="specs-list">
       <li><span>제품 분류</span><span>Education</span></li>
-      <li><span>공급 형태</span><span>해외 제조사 파트너십</span></li>
       <li><span>주요 활용</span><span>의학·간호 교육 실습</span></li>
-      <li><span>국내 수입사</span><span>동남메디칼 (공식 수입·유통)</span></li>
+      <li><span>국내 공급사</span><span>동남메디칼 · 한국</span></li>
     </ul>
   </div>
 </section>

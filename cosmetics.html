@@ -74,7 +74,16 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; overflow:hidden; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero-placeholder{
+    position:absolute; top:50%; right:64px; transform:translateY(-50%);
+    width:200px; height:200px;
+    display:flex; align-items:center; justify-content:center;
+    border:1px dashed rgba(255,255,255,0.3); border-radius:6px;
+    color:#C7CCD6; font-size:0.9rem; font-weight:600; letter-spacing:0.02em;
+    pointer-events:none;
+  }
+  @media(max-width:900px){ .p-hero-placeholder{ display:none; } }
   .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
@@ -180,10 +189,11 @@
 </header>
 
 <section class="p-hero">
+  <div class="p-hero-placeholder">출시 예정</div>
   <div class="p-hero-inner">
     <div class="product-tag">Cosmetics</div>
     <h1 class="p-title">화장품</h1>
-    <div class="p-origin">해외 제조사 파트너십</div>
+    <div class="p-origin">동남메디칼 · 한국</div>
     <p class="p-lede">
       피부 컨디션에 맞춘 스킨케어 화장품 라인으로, 개인의 보습력과 피부 상태에 맞는
       맞춤형 관리를 지원합니다. 피부과·에스테틱 등 다양한 현장에서 진단 결과를 바탕으로
@@ -218,7 +228,7 @@
       </div>
       <div class="feature-card">
         <div class="feature-title">안정적인 공급</div>
-        <p class="feature-desc">동남메디칼이 안정적인 수입·유통을 지원합니다.</p>
+        <p class="feature-desc">동남메디칼이 한국에서 안정적인 생산과 공급을 지원합니다.</p>
       </div>
     </div>
   </div>
@@ -232,10 +242,9 @@
     </div>
     <ul class="specs-list">
       <li><span>제품 분류</span><span>Cosmetics</span></li>
-      <li><span>공급 형태</span><span>해외 제조사 파트너십</span></li>
       <li><span>주요 활용</span><span>피부 보습력·컨디션 맞춤 스킨케어</span></li>
       <li><span>활용 현장</span><span>피부과, 에스테틱 등</span></li>
-      <li><span>국내 수입사</span><span>동남메디칼 (공식 수입·유통)</span></li>
+      <li><span>국내 공급사</span><span>동남메디칼 · 한국</span></li>
     </ul>
   </div>
 </section>
