@@ -152,8 +152,19 @@
   .about > .wrap{ position:relative; z-index:1; }
   .about-grid{ display:grid; grid-template-columns:1fr; gap:48px; }
   @media(min-width:840px){ .about-grid{ grid-template-columns: 1.1fr 0.9fr; align-items:center; } }
-  .partners-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:64px; }
-  .partner-logo{ max-width:220px; max-height:84px; width:auto; height:auto; object-fit:contain; }
+  .partners-label{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:22px;
+  }
+  .partners-label::before, .partners-label::after{
+    content:''; height:1px; width:32px;
+    background:linear-gradient(to right, transparent, var(--line));
+  }
+  .partners-label::after{ background:linear-gradient(to left, transparent, var(--line)); }
+  .partners-row{ display:flex; flex-wrap:nowrap; align-items:center; justify-content:center; gap:28px; }
+  .partner-logo{ height:52px; width:auto; max-width:140px; object-fit:contain; flex:0 1 auto; }
+  .partner-logo.partner-logo-bedfont{ height:100px; margin-right:20px; }
 
   /* ---------- PRODUCTS ---------- */
   .products-nav{ position:relative; }
@@ -310,6 +321,16 @@
     details[open] + .dn-dropdown{ display:block; }
     .dn-dropdown a{ padding:12px 28px 12px 44px; font-size:0.95rem; }
   }
+
+  /* ---------- FOOTER (unified) ---------- */
+  .footer-inner{
+    display:block; max-width:1120px; margin:0 auto;
+    padding:0 24px 0 64px;
+  }
+  .footer-line{ margin-top:4px; }
+  .footer-line:first-child{ margin-top:0; }
+  .footer-copy{ margin-top:10px; color:#6E7889; font-size:0.76rem; }
+  @media(max-width:768px){ .footer-inner{ padding:0 20px; } }
 </style>
 </head>
 <body>
@@ -443,9 +464,11 @@
       </p>
     </div>
     <div class="about-partners">
+      <div class="partners-label">해외공급사</div>
       <div class="partners-row">
-        <img class="partner-logo" src="로고/Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
+        <img class="partner-logo partner-logo-bedfont" src="로고/Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
         <img class="partner-logo" src="로고/피탄 회사로고.png" alt="PITTAN">
+        <img class="partner-logo" src="로고/Mir logo.png" alt="Mir">
       </div>
     </div>
   </div>
@@ -628,13 +651,9 @@
 
 <footer>
   <div class="footer-inner">
-    <div>© 2026 Dongnam Medical. All rights reserved.</div>
-    <div class="footer-info">
-      <div><span>Tel</span>031-908-7588</div>
-      <div><span>Fax</span>031-908-7589</div>
-      <div><span>Email</span>dnamed@hanmail.net</div>
-      <div><span>Address</span>경기도 고양시 일산 (본사)</div>
-    </div>
+    <div class="footer-line">동남메디칼&nbsp;|&nbsp;대표자 : 정상섭</div>
+    <div class="footer-line">경기도 고양시 일산동구 대산로 18, 202 서교빌딩&nbsp;|&nbsp;사업자등록번호 : 128-27-96418&nbsp;|&nbsp;대표번호 : 031-908-7588</div>
+    <div class="footer-copy">Copyright © 2026 Dongnam Medical. All rights reserved.</div>
   </div>
 </footer>
 

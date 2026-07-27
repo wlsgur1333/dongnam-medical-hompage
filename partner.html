@@ -92,8 +92,9 @@
     font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
     font-weight:600; color:var(--green); margin-bottom:28px;
   }
-  .panel-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:36px; margin-bottom:24px; }
-  .panel-logo{ max-width:170px; max-height:64px; width:auto; height:auto; object-fit:contain; }
+  .panel-logos{ display:flex; flex-wrap:nowrap; align-items:center; gap:32px; margin-bottom:24px; }
+  .panel-logo{ height:46px; width:auto; max-width:130px; object-fit:contain; flex:0 1 auto; }
+  .panel-logo.panel-logo-bedfont{ height:88px; margin-right:16px; }
   .panel-desc{ color:var(--ink-soft); font-size:0.94rem; }
 
   .panel-dark{ background:var(--navy); color:var(--paper); }
@@ -171,6 +172,16 @@
     details[open] + .dn-dropdown{ display:block; }
     .dn-dropdown a{ padding:12px 28px 12px 44px; font-size:0.95rem; }
   }
+
+  /* ---------- FOOTER (unified) ---------- */
+  .footer-inner{
+    display:block; max-width:1120px; margin:0 auto;
+    padding:0 24px 0 64px;
+  }
+  .footer-line{ margin-top:4px; }
+  .footer-line:first-child{ margin-top:0; }
+  .footer-copy{ margin-top:10px; color:#6E7889; font-size:0.76rem; }
+  @media(max-width:768px){ .footer-inner{ padding:0 20px; } }
 </style>
 </head>
 <body>
@@ -252,8 +263,9 @@
       <div class="panel" id="overseas">
         <div class="panel-label">해외 파트너십</div>
         <div class="panel-logos">
-          <img class="panel-logo" src="로고/Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
+          <img class="panel-logo panel-logo-bedfont" src="로고/Bedfont-Logo-without-EST-Colour.png" alt="Bedfont Scientific">
           <img class="panel-logo" src="로고/피탄 회사로고.png" alt="PITTAN">
+          <img class="panel-logo" src="로고/Mir logo.png" alt="Mir">
         </div>
         <p class="panel-desc">동남메디칼이 국내 독점 유통하는 검증된 해외 제조사입니다.</p>
       </div>
@@ -271,13 +283,9 @@
 
 <footer>
   <div class="footer-inner">
-    <div>© 2026 Dongnam Medical. All rights reserved.</div>
-    <div class="footer-info">
-      <div><span>Tel</span>031-908-7588</div>
-      <div><span>Fax</span>031-908-7589</div>
-      <div><span>Email</span>dnamed@hanmail.net</div>
-      <div><span>Address</span>경기도 고양시 일산 (본사)</div>
-    </div>
+    <div class="footer-line">동남메디칼&nbsp;|&nbsp;대표자 : 정상섭</div>
+    <div class="footer-line">경기도 고양시 일산동구 대산로 18, 202 서교빌딩&nbsp;|&nbsp;사업자등록번호 : 128-27-96418&nbsp;|&nbsp;대표번호 : 031-908-7588</div>
+    <div class="footer-copy">Copyright © 2026 Dongnam Medical. All rights reserved.</div>
   </div>
 </footer>
 
