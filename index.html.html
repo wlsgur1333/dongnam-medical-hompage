@@ -30,7 +30,7 @@
   }
   h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
   a{ color:inherit; text-decoration:none; }
-  .wrap{ max-width:1360px; margin:0 auto; padding:0 32px; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
 
   /* focus visibility */
   a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
@@ -47,7 +47,7 @@
   .dn-top{ background:var(--cream); }
   .dn-header{
     display:flex; justify-content:space-between; align-items:center;
-    padding:20px 24px 20px 64px; border-bottom:1px solid var(--line);
+    padding:20px 32px; border-bottom:1px solid var(--line);
   }
   .dn-logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.3rem; letter-spacing:-0.01em; }
   .dn-logo img{ height:32px; width:auto; display:block; }
@@ -76,22 +76,22 @@
 
   .dn-hero{
     position:relative;
-    padding:100px 40px 90px; max-width:1360px; margin:0 auto;
+    padding:130px 40px 110px; max-width:1120px; margin:0 auto;
   }
   .dn-hero::before{
     content:'';
     position:absolute; top:0; left:50%; right:0; bottom:0;
     transform:translateX(-50%); width:100vw; z-index:0;
     background-image:
-      linear-gradient(to right, #FFFFFF 34%, rgba(255,255,255,0) 78%),
-      url('메인페이지 배경 사진/hero-bg.jpg');
-    background-position: 0 0, center 75%;
-    background-size: 100% 100%, cover;
+      linear-gradient(to right, #FFFFFF 26%, rgba(255,255,255,0.94) 40%, rgba(255,255,255,0.55) 58%, rgba(255,255,255,0) 82%),
+      url('메인페이지 배경 사진/메인 배경사진 7.png');
+    background-position: 0 0, right center;
+    background-size: 100% 100%, contain;
     background-repeat: no-repeat, no-repeat;
   }
   .dn-hero > *{ position:relative; z-index:1; }
-  .dn-hero-title{ font-size:clamp(1.9rem, 4vw, 2.6rem); font-weight:500; line-height:1.4; margin-bottom:20px; letter-spacing:-0.01em; color:var(--navy); }
-  .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin:0 0 40px; }
+  .dn-hero-title{ font-size:clamp(2rem, 4.2vw, 2.8rem); font-weight:500; line-height:1.38; margin-bottom:22px; letter-spacing:-0.01em; color:var(--navy); word-break:keep-all; }
+  .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:480px; margin:0 0 40px; word-break:keep-all; }
   .dn-cta-group{ display:flex; gap:16px; justify-content:flex-start; }
   .dn-btn{
     padding:14px 28px; font-size:0.92rem; font-weight:500; border-radius:2px;
@@ -119,7 +119,7 @@
     .dn-dna .strand, .dn-dna .rung{ animation:none; stroke-dashoffset:0; }
   }
 
-  .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1360px; margin:0 auto; }
+  .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1120px; margin:0 auto; }
   .dn-feature{ padding:32px 20px; text-align:center; border-right:1px solid var(--line); }
   .dn-feature:last-child{ border-right:none; }
   .dn-feature-icon{ width:28px; height:1px; background:var(--green); margin:0 auto 16px; }
@@ -131,6 +131,7 @@
     .dn-feature:nth-child(2){ border-right:none; }
     .dn-feature:nth-child(1), .dn-feature:nth-child(2){ border-bottom:1px solid var(--line); }
     .dn-hero{ padding:60px 24px; }
+    .dn-hero::before{ background-image:none; background-color:var(--cream); }
     .dn-header{ padding:16px 20px; }
     .dn-nav{ gap:16px; font-size:0.82rem; }
   }
@@ -259,7 +260,7 @@
   .contact-list li span:last-child{ color:var(--navy); font-weight:500; }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
-  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 24px 0 64px; }
+  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 32px; }
   @media(min-width:760px){ .footer-inner{ flex-direction:row; align-items:flex-start; justify-content:space-between; } }
   .footer-info{ display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:flex-start; }
   @media(min-width:760px){ .footer-info{ justify-content:flex-end; } }
@@ -325,7 +326,7 @@
   /* ---------- FOOTER (unified) ---------- */
   .footer-inner{
     display:block; max-width:1120px; margin:0 auto;
-    padding:0 24px 0 64px;
+    padding:0 32px;
   }
   .footer-line{ margin-top:4px; }
   .footer-line:first-child{ margin-top:0; }
@@ -398,11 +399,12 @@
   </header>
 
   <section class="dn-hero">
-    <div class="eyebrow">해외 정밀 진단·측정기기 수입·유통</div>
-    <h1 class="dn-hero-title">정확한 진단,<br>믿을 수 있는 파트너</h1>
+    <div class="eyebrow">Global Diagnostic Partner</div>
+    <h1 class="dn-hero-title">정밀함이 만드는 신뢰,<br>동남메디칼</h1>
     <p class="dn-subcopy">
-      동남메디칼은 해외 우수 진단·측정기기와 관련 소모품을 공급하며,<br>
-      병·의원, 보건소의 정확한 진단을 든든하게 뒷받침합니다.
+      동남메디칼은 세계적으로 검증된 진단·측정 솔루션을 엄선하여
+      국내 의료 현장에 전달하는 전문 수입 유통사입니다.
+      인허가부터 사후관리까지, 가장 정확한 기준으로 책임집니다.
     </p>
     <div class="dn-cta-group">
       <a href="#products" class="dn-btn dn-btn-primary">제품 살펴보기</a>
