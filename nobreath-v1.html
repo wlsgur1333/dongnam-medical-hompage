@@ -6,6 +6,7 @@
 <title>NObreath V1 | 동남메디칼</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 <style>
   :root{
     --navy: #14284A;
@@ -28,7 +29,7 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+  h1,h2,h3,.serif{ font-family:'Fraunces', 'Pretendard', sans-serif; }
   a{ color:inherit; text-decoration:none; }
   .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
   a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
@@ -46,8 +47,8 @@
     backdrop-filter: blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 32px; }
-  @media(max-width:768px){ .nav{ padding:16px 20px; } }
+  .nav{ display:flex; align-items:center; justify-content:space-between; max-width:1120px; margin:0 auto; padding:20px 32px; }
+  @media(max-width:768px){ .nav{ padding:16px 32px; } }
   .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
   .brand img{ height:32px; width:auto; display:block; }
   .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
@@ -74,7 +75,7 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .p-hero{ position:relative; overflow:hidden; padding:120px 32px 90px; background:var(--navy-deep); }
+  .p-hero{ position:relative; overflow:hidden; padding:120px 0 90px; background:var(--navy-deep); }
   .p-hero-photo{
     position:absolute; top:0; right:0; bottom:0;
     height:100%; width:auto; max-width:52%;
@@ -85,7 +86,7 @@
     pointer-events:none;
   }
   @media(max-width:760px){ .p-hero-photo{ display:none; } }
-  .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; }
+  .p-hero-inner{ position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:0 32px; }
   .product-tag{ font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:600; }
   .discontinued-badge{
     display:inline-block; margin-left:12px; padding:3px 10px; border-radius:2px;
@@ -93,7 +94,7 @@
     color:#E8A9A0; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
     font-weight:600; vertical-align:middle;
   }
-  h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:500; color:var(--paper); letter-spacing:-0.01em; }
+  h1.p-title{ margin-top:14px; font-size:clamp(2rem, 4vw, 3rem); font-weight:600; color:var(--paper); letter-spacing:-0.01em; }
   .p-origin{ margin-top:10px; font-size:0.95rem; color:#C7CCD6; }
   .p-lede{ margin-top:26px; max-width:56ch; font-size:1.08rem; color:#DCDFE6; }
   .p-cta{ margin-top:36px; display:flex; gap:16px; flex-wrap:wrap; }
@@ -110,7 +111,7 @@
 
   section{ padding:96px 0; }
   .section-head{ margin-bottom:44px; max-width:640px; }
-  h2.section-title{ font-size:clamp(1.5rem, 3vw, 2rem); color:var(--navy); font-weight:500; }
+  h2.section-title{ font-size:clamp(1.5rem, 3vw, 2rem); color:var(--navy); font-weight:600; }
   .section-desc{ margin-top:16px; color:var(--ink-soft); font-size:1rem; max-width:56ch; }
 
   .features{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -132,7 +133,7 @@
   .cta-strip{ background:var(--navy); color:var(--paper); }
   .cta-strip .wrap{ display:flex; flex-direction:column; gap:24px; align-items:flex-start; }
   @media(min-width:760px){ .cta-strip .wrap{ flex-direction:row; align-items:center; justify-content:space-between; } }
-  .cta-strip p{ font-family:'Fraunces', serif; font-size:1.3rem; max-width:36ch; color:#EDEAE2; }
+  .cta-strip p{ font-family:'Fraunces', 'Pretendard', sans-serif; font-size:1.3rem; max-width:36ch; color:#EDEAE2; }
   .cta-strip .cta-buttons{ display:flex; gap:12px; flex-wrap:wrap; }
   .cta-strip .btn-ghost{ border-color:var(--paper); color:var(--paper); }
   .cta-strip .btn-ghost:hover{ background:var(--paper); color:var(--navy); }
@@ -203,7 +204,7 @@
   .footer-line{ margin-top:4px; }
   .footer-line:first-child{ margin-top:0; }
   .footer-copy{ margin-top:10px; color:#6E7889; font-size:0.76rem; }
-  @media(max-width:768px){ .footer-inner{ padding:0 20px; } }
+  @media(max-width:768px){ .footer-inner{ padding:0 32px; } }
 </style>
 </head>
 <body>
@@ -272,7 +273,7 @@
 </header>
 
 <section class="p-hero">
-  <img class="p-hero-photo" src="제품 사진/Nobreath V1/nobreath-v1-hero-cutout.png" alt="">
+  <img class="p-hero-photo" src="제품 사진/Nobreath V1/nobreath-v1-hero-cutout.jpg" alt="">
   <div class="p-hero-inner">
     <div class="product-tag">Respiratory <span class="discontinued-badge">단종</span></div>
     <h1 class="p-title">NObreath V1</h1>

@@ -18,7 +18,7 @@ NObreath-monitor.png
 메인 배경사진 6.jpg
 하위 배경사진 1.jpg
 제품 사진/Pitagoras/*
-!제품 사진/Pitagoras/pitagoras-hero.png
+!제품 사진/Pitagoras/pitagoras-hero.jpg
 !제품 사진/Pitagoras/pitagoras-thumb.png
 Bedfont-NObreath-image.png
 Bedfont-NObreath-image 1.jpg
@@ -32,7 +32,15 @@ Salt Signal 3.png
 자료실/Nobreath V2/FeNOchart.zip
 제품 사진/Needle counter/*
 !제품 사진/Needle counter/needle-counter-thumb.png
-!제품 사진/Needle counter/needle-counter-hero.png
+!제품 사진/Needle counter/needle-counter-hero.jpg
 제품 사진/인체모형/*
 !제품 사진/인체모형/anatomy-model-thumb.png
-!제품 사진/인체모형/anatomy-model-hero.png
+!제품 사진/인체모형/anatomy-model-hero.jpg
+
+# transparent PNG masters for the hero photos. The site now serves the JPEG
+# versions (composited on the navy hero background, ~89% smaller); these are
+# kept locally as the editable originals but are not deployed.
+제품 사진/Nobreath V1/nobreath-v1-hero-cutout.png
+제품 사진/Nobreath V2/nobreath-hero-cutout.png
+제품 사진/Salt Signal/saltsignal-hero.png
+메인페이지 배경 사진/메인 배경사진 7.png
