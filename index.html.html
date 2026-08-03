@@ -66,7 +66,9 @@
   .eyebrow::before{ content:''; width:22px; height:1px; background:var(--green); display:inline-block; }
 
   /* ---------- NEW TOP: header / hero / features ---------- */
-  .dn-top{ background:var(--cream); }
+  /* 히어로 배경(::before)이 width:100vw인데 100vw는 스크롤바 폭까지 포함해서
+     문서 폭을 ~15px 넘어선다 → 가로 스크롤바가 생김. 여기서 잘라낸다. */
+  .dn-top{ background:var(--cream); overflow-x:hidden; overflow-x:clip; }
   .dn-header{
     display:flex; justify-content:space-between; align-items:center;
     padding:20px max(32px, calc((100% - 1120px) / 2 + 32px)); border-bottom:1px solid var(--line);
@@ -100,16 +102,33 @@
     position:relative;
     padding:130px 32px 110px; max-width:1120px; margin:0 auto;
   }
+  /* 히어로 사진 영역.
+     사진을 '고정 크기 이미지'로 두면(contain / auto 100%) 폭이 고정되기 때문에,
+     브라우저를 축소해 뷰포트가 넓어지면 사진이 본문 컬럼에서 떨어져 나가거나
+     화면 끝에 닿지 못해 각진 사각형 덩어리로 떠 버린다.
+     그래서 사진을 '본문 컬럼 중앙 ~ 화면 오른쪽 끝'이라는 영역으로 정의하고
+     cover로 채운다. 영역이 항상 화면 끝까지 닿으므로 어떤 배율에서도 잘린 티가 없고,
+     시작점이 컬럼 기준이라 본문에서 절대 분리되지 않는다. */
   .dn-hero::before{
     content:'';
-    position:absolute; top:0; left:50%; right:0; bottom:0;
-    transform:translateX(-50%); width:100vw; z-index:0;
+    position:absolute; top:0; bottom:0;
+    left:50%;                              /* 본문 컬럼의 가로 중앙 */
+    right:min(0px, calc(560px - 50vw));    /* 화면 오른쪽 끝까지 (컬럼보다 좁으면 0) */
+    z-index:0;
     background-image:
-      linear-gradient(to right, #FFFFFF 26%, rgba(255,255,255,0.94) 40%, rgba(255,255,255,0.55) 58%, rgba(255,255,255,0) 82%),
+      linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0.88) 22%, rgba(255,255,255,0.4) 42%, rgba(255,255,255,0) 68%),
       url('메인페이지 배경 사진/메인 배경사진 7.jpg');
-    background-position: 0 0, right center;
-    background-size: 100% 100%, contain;
+    background-position: 0 0, right 65%;
+    background-size: 100% 100%, cover;
     background-repeat: no-repeat, no-repeat;
+  }
+  /* 좁은 폭에서는 본문이 사진 영역까지 밀고 들어오므로 흰색 마스크를 더 넓게 잡는다. */
+  @media(max-width:1300px){
+    .dn-hero::before{
+      background-image:
+        linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0.95) 38%, rgba(255,255,255,0.5) 62%, rgba(255,255,255,0) 88%),
+        url('메인페이지 배경 사진/메인 배경사진 7.jpg');
+    }
   }
   .dn-hero > *{ position:relative; z-index:1; }
   .dn-hero-title{ font-size:clamp(2rem, 4.2vw, 2.8rem); font-weight:600; line-height:1.38; margin-bottom:22px; letter-spacing:-0.01em; color:var(--navy); word-break:keep-all; }
