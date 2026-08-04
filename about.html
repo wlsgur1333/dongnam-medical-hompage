@@ -41,7 +41,9 @@
     --line: #DCD8CF;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  /* contact.html 처럼 짧은 페이지엔 세로 스크롤바가 없어서,
+     다른 페이지에서 넘어오면 본문 전체가 ~15px 옆으로 튄다. 자리를 항상 비워둔다. */
+  html{ scroll-behavior:smooth; scrollbar-gutter:stable; }
   body{
     font-family:'IBM Plex Sans KR', sans-serif;
     background:var(--cream);
@@ -99,7 +101,10 @@
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
   /* ---------- ABOUT HERO: full-width statement ---------- */
-  .about-hero{ padding:100px 40px 90px; text-align:center; }
+  /* 좌우 여백은 32px 로 통일한다. 내부에 .wrap 이 있는 섹션은 .wrap 이 32px 을 주므로
+     섹션 자체는 0, .wrap 이 없는 섹션만 섹션에서 직접 32px 을 준다.
+     (예전엔 전 섹션이 40px 이라 헤더·푸터 32px 과 8~40px 씩 어긋나 있었다.) */
+  .about-hero{ padding:100px 0 90px; text-align:center; }
   .about-hero .eyebrow{ justify-content:center; }
   .about-hero .eyebrow::before{ display:none; }
   .about-title{
@@ -113,7 +118,7 @@
   }
 
   /* ---------- CEO MESSAGE ---------- */
-  .ceo-message{ padding:96px 40px; background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .ceo-message{ padding:96px 32px; background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .ceo-message .head{ text-align:center; margin-bottom:48px; }
   .ceo-message .head .eyebrow{ justify-content:center; }
   .ceo-message .head .eyebrow::before{ display:none; }
@@ -134,7 +139,7 @@
   .ceo-name{ color:var(--ink); font-weight:600; }
 
   /* ---------- PILLARS: numbered process ---------- */
-  .pillars{ padding:96px 40px; }
+  .pillars{ padding:96px 32px; }
   .pillar-grid{
     display:grid; grid-template-columns:1fr; gap:1px;
     background:var(--line); border:1px solid var(--line); max-width:1056px; margin:0 auto;
@@ -146,7 +151,7 @@
   .pillar p{ margin-top:14px; font-size:0.92rem; color:var(--ink-soft); }
 
   /* ---------- PRINCIPLE: pull quote ---------- */
-  .principle{ padding:96px 40px; background:var(--navy-deep); text-align:center; }
+  .principle{ padding:96px 32px; background:var(--navy-deep); text-align:center; }
   .principle-inner{ max-width:760px; margin:0 auto; }
   .principle-inner p{
     font-family:'Fraunces', 'Pretendard', sans-serif; font-size:clamp(1.3rem, 2.6vw, 1.7rem);
@@ -154,7 +159,7 @@
   }
 
   /* ---------- ORG CHART ---------- */
-  .org{ padding:96px 40px; }
+  .org{ padding:96px 0; }
   .org .head{ text-align:center; margin-bottom:64px; }
   .org .head .eyebrow{ justify-content:center; }
   .org .head .eyebrow::before{ display:none; }
@@ -166,19 +171,25 @@
   }
   .org-connector{ width:1px; height:32px; background:var(--line); }
   .org-departments{
-    display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:28px;
+    display:flex; flex-wrap:nowrap; justify-content:center; align-items:flex-start; gap:28px;
     position:relative; padding-top:32px; width:100%;
-  }
-  .org-departments::before{
-    content:''; position:absolute; top:0; left:8%; right:8%; height:1px; background:var(--line);
   }
   .org-branch{
     position:relative; flex:1 1 200px; max-width:240px;
     display:flex; flex-direction:column; align-items:center;
   }
+  /* 세로 지선 */
   .org-branch::before{
     content:''; position:absolute; top:-32px; left:50%; width:1px; height:32px; background:var(--line);
   }
+  /* 가로 연결선. 컨테이너에 left:8%/right:8% 로 한 줄 그리면 지선 위치와 무관해서
+     양 끝이 허공으로 110px 씩 삐져나왔다. 가지마다 제 몫만 그리고 gap(28px) 의
+     절반씩 밖으로 늘려 이어 붙인다 → 선이 정확히 첫 지선에서 끝 지선까지만 간다. */
+  .org-branch::after{
+    content:''; position:absolute; top:-32px; left:-14px; right:-14px; height:1px; background:var(--line);
+  }
+  .org-branch:first-child::after{ left:50%; }
+  .org-branch:last-child::after{ right:50%; }
   .org-dept{
     width:100%; background:var(--paper); border:1px solid var(--line);
     padding:20px 18px; text-align:center;
@@ -193,9 +204,16 @@
   }
   .org-subdept-name{ font-size:0.84rem; color:var(--navy); font-weight:500; }
   .org-subdept-desc{ margin-top:5px; font-size:0.72rem; color:var(--ink-soft); }
+  /* 좁은 화면에서 3열을 유지하면 한 칸이 80px 까지 눌린다. 세로로 쌓고 가로선은 뺀다.
+     (예전엔 flex-wrap 으로 2+1 로 접혀서, 아래로 내려간 가지의 지선이 허공을 가리켰다.) */
+  @media(max-width:760px){
+    .org-departments{ flex-direction:column; align-items:center; gap:32px; padding-top:32px; }
+    .org-branch{ flex:0 0 auto; width:100%; max-width:300px; }
+    .org-branch::after{ display:none; }
+  }
 
   /* ---------- PARTNERS STRIP ---------- */
-  .about-partners-strip{ padding:96px 40px; border-top:1px solid var(--line); }
+  .about-partners-strip{ padding:96px 0; border-top:1px solid var(--line); }
   .about-partners-strip .eyebrow{ justify-content:center; }
   .about-partners-strip .eyebrow::before{ display:none; }
   .about-partners-strip .head{ text-align:center; margin-bottom:44px; }
@@ -204,13 +222,6 @@
   .partner-logo.partner-logo-bedfont{ height:114px; margin-right:20px; }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
-  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 32px; max-width:1120px; margin:0 auto; }
-  @media(min-width:760px){ .footer-inner{ flex-direction:row; align-items:flex-start; justify-content:space-between; } }
-  .footer-info{ display:flex; flex-wrap:wrap; gap:6px 18px; }
-  .footer-info span{
-    font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
-    color:#6E7889; margin-right:6px;
-  }
 
   /* ---------- MOBILE NAV ---------- */
   .nav-toggle{

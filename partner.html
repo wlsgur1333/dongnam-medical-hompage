@@ -41,7 +41,9 @@
     --line: #DCD8CF;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  /* contact.html 처럼 짧은 페이지엔 세로 스크롤바가 없어서,
+     다른 페이지에서 넘어오면 본문 전체가 ~15px 옆으로 튄다. 자리를 항상 비워둔다. */
+  html{ scroll-behavior:smooth; scrollbar-gutter:stable; }
   body{
     font-family:'IBM Plex Sans KR', sans-serif;
     background:var(--cream);
@@ -110,12 +112,15 @@
   }
   @media(min-width:840px){ .panel-grid{ grid-template-columns:1fr 1fr; } }
   .panel{ background:var(--paper); padding:56px 44px; scroll-margin-top:88px; }
+  @media(max-width:640px){ .panel{ padding:44px 28px; } }
   .panel-label{
     font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
     font-weight:600; color:var(--green); margin-bottom:28px;
   }
-  .panel-logos{ display:flex; flex-wrap:nowrap; align-items:center; gap:32px; margin-bottom:24px; }
-  .panel-logo{ height:46px; width:auto; max-width:130px; object-fit:contain; flex:0 1 auto; }
+  /* nowrap 이면 로고 3개(426px) + 패널 좌우 패딩(88px) = 514px 가 최소 폭으로 굳어져
+     폰에서 페이지 전체가 187px 만큼 가로로 밀렸다. */
+  .panel-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:32px; margin-bottom:24px; }
+  .panel-logo{ height:46px; width:auto; max-width:130px; object-fit:contain; flex:0 1 auto; min-width:0; }
   .panel-logo.panel-logo-bedfont{ height:88px; margin-right:16px; }
   .panel-desc{ color:var(--ink-soft); font-size:0.94rem; }
 
@@ -133,13 +138,6 @@
   .panel-mark img{ max-height:24px; width:auto; display:block; }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
-  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 32px; max-width:1120px; margin:0 auto; }
-  @media(min-width:760px){ .footer-inner{ flex-direction:row; align-items:flex-start; justify-content:space-between; } }
-  .footer-info{ display:flex; flex-wrap:wrap; gap:6px 18px; }
-  .footer-info span{
-    font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
-    color:#6E7889; margin-right:6px;
-  }
 
   /* ---------- MOBILE NAV ---------- */
   .nav-toggle{

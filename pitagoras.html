@@ -41,7 +41,9 @@
     --line: #DCD8CF;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  /* contact.html 처럼 짧은 페이지엔 세로 스크롤바가 없어서,
+     다른 페이지에서 넘어오면 본문 전체가 ~15px 옆으로 튄다. 자리를 항상 비워둔다. */
+  html{ scroll-behavior:smooth; scrollbar-gutter:stable; }
   body{
     font-family:'IBM Plex Sans KR', sans-serif;
     background:var(--cream);
@@ -154,12 +156,11 @@
   @media(min-width:760px){ .cta-strip .wrap{ flex-direction:row; align-items:center; justify-content:space-between; } }
   .cta-strip p{ font-family:'Fraunces', 'Pretendard', sans-serif; font-size:1.3rem; max-width:36ch; color:#EDEAE2; }
   .cta-strip .cta-buttons{ display:flex; gap:12px; flex-wrap:wrap; }
+  .cta-strip .btn-primary{ border-color:var(--paper); }
   .cta-strip .btn-ghost{ border-color:var(--paper); color:var(--paper); }
   .cta-strip .btn-ghost:hover{ background:var(--paper); color:var(--navy); }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
-  footer .wrap{ display:flex; flex-direction:column; gap:8px; }
-  @media(min-width:760px){ footer .wrap{ flex-direction:row; justify-content:space-between; } }
 
   /* ---------- MOBILE NAV ---------- */
   .nav-toggle{
@@ -316,8 +317,8 @@
         맞춤형 스킨케어 및 컨디션 관리 상담에 활용할 수 있습니다.
       </p>
       <div class="p-cta">
-        <a href="index.html.html#contact" class="btn btn-primary">도입 문의하기</a>
-        <a href="index.html.html#products" class="btn btn-ghost">다른 제품 보기</a>
+        <a href="contact.html" class="btn btn-primary">도입 문의하기</a>
+        <a href="products.html" class="btn btn-ghost">다른 제품 보기</a>
       </div>
     </div>
     <div class="p-hero-photo">
@@ -376,7 +377,7 @@
   <div class="wrap">
     <p>"Pitagoras 도입 및 자세한 제품 자료가 필요하신가요?"</p>
     <div class="cta-buttons">
-      <a href="index.html.html#contact" class="btn btn-primary" style="border-color:var(--paper);">문의하기</a>
+      <a href="contact.html" class="btn btn-primary">문의하기</a>
       <a href="resources.html#res-pitagoras" class="btn btn-ghost">관련 자료실</a>
     </div>
   </div>

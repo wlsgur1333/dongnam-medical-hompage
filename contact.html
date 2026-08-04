@@ -41,7 +41,9 @@
     --line: #DCD8CF;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  /* contact.html 처럼 짧은 페이지엔 세로 스크롤바가 없어서,
+     다른 페이지에서 넘어오면 본문 전체가 ~15px 옆으로 튄다. 자리를 항상 비워둔다. */
+  html{ scroll-behavior:smooth; scrollbar-gutter:stable; }
   body{
     font-family:'IBM Plex Sans KR', sans-serif;
     background:var(--cream);
@@ -120,13 +122,6 @@
   .contact-value{ font-size:1.05rem; color:var(--navy); font-weight:500; text-align:right; }
 
   footer{ background:var(--navy-deep); color:#8A93A3; padding:36px 0; font-size:0.82rem; }
-  .footer-inner{ display:flex; flex-direction:column; gap:16px; padding:0 32px; max-width:1120px; margin:0 auto; }
-  @media(min-width:760px){ .footer-inner{ flex-direction:row; align-items:flex-start; justify-content:space-between; } }
-  .footer-info{ display:flex; flex-wrap:wrap; gap:6px 18px; }
-  .footer-info span{
-    font-size:0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
-    color:#6E7889; margin-right:6px;
-  }
 
   /* ---------- MOBILE NAV ---------- */
   .nav-toggle{
