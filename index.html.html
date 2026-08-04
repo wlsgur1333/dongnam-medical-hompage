@@ -70,11 +70,13 @@
      문서 폭을 ~15px 넘어선다 → 가로 스크롤바가 생김. 여기서 잘라낸다. */
   .dn-top{ background:var(--cream); overflow-x:hidden; overflow-x:clip; }
   .dn-header{
-    position:sticky; top:0; z-index:50; background:var(--cream);
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     display:flex; justify-content:space-between; align-items:center;
     padding:20px max(32px, calc((100% - 1120px) / 2 + 32px)); border-bottom:1px solid var(--line);
   }
-  .dn-logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.3rem; letter-spacing:-0.01em; }
+  .dn-logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.3rem; letter-spacing:0.02em; }
   .dn-logo img{ height:32px; width:auto; display:block; }
   .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
   .dn-nav a{ cursor:pointer; }
@@ -389,7 +391,7 @@
 <body>
 
 <header class="dn-header">
-  <div class="dn-logo"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</div>
+  <a href="index.html.html" class="dn-logo"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
   <nav class="dn-nav" id="dnNav">
     <div class="dn-nav-item">
       <a href="about.html">회사소개</a>
