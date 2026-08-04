@@ -69,15 +69,16 @@
   /* 히어로 배경(::before)이 width:100vw인데 100vw는 스크롤바 폭까지 포함해서
      문서 폭을 ~15px 넘어선다 → 가로 스크롤바가 생김. 여기서 잘라낸다. */
   .dn-top{ background:var(--cream); overflow-x:hidden; overflow-x:clip; }
-  .dn-header{
+  header{
     position:sticky; top:0; z-index:50;
     background:rgba(255,255,255,0.88);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    display:flex; justify-content:space-between; align-items:center;
-    padding:20px max(32px, calc((100% - 1120px) / 2 + 32px)); border-bottom:1px solid var(--line);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
   }
-  .dn-logo{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.3rem; letter-spacing:0.02em; }
-  .dn-logo img{ height:32px; width:auto; display:block; }
+  .nav{ display:flex; align-items:center; justify-content:space-between; max-width:1120px; margin:0 auto; padding:20px 32px; }
+  @media(max-width:768px){ .nav{ padding:16px 32px; } }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
+  .brand img{ height:32px; width:auto; display:block; }
   .dn-nav{ display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft); }
   .dn-nav a{ cursor:pointer; }
   .dn-nav a:hover{ color:var(--navy); }
@@ -176,8 +177,6 @@
     .dn-feature:nth-child(1), .dn-feature:nth-child(2){ border-bottom:1px solid var(--line); }
     .dn-hero{ padding:60px 32px; }
     .dn-hero::before{ background-image:none; background-color:var(--cream); }
-    .dn-header{ padding:16px 32px; }
-    .dn-nav{ gap:16px; font-size:0.82rem; }
   }
 
   /* ---------- SECTION shared ---------- */
@@ -390,67 +389,69 @@
 </head>
 <body>
 
-<header class="dn-header">
-  <a href="index.html.html" class="dn-logo"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
-  <nav class="dn-nav" id="dnNav">
-    <div class="dn-nav-item">
-      <a href="about.html">회사소개</a>
-      <details>
-        <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
-      </details>
-      <div class="dn-dropdown">
-        <a href="about.html#greeting">대표이사 인사말</a>
-        <a href="about.html#org">조직도</a>
-        <a href="about.html#business">사업 영역</a>
+<header>
+  <div class="nav">
+    <a href="index.html.html" class="brand"><img src="로고/동남메디칼 로고 아이콘.png" alt="동남메디칼 로고">동남메디칼</a>
+    <nav class="dn-nav" id="dnNav">
+      <div class="dn-nav-item">
+        <a href="about.html">회사소개</a>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+        </details>
+        <div class="dn-dropdown">
+          <a href="about.html#greeting">대표이사 인사말</a>
+          <a href="about.html#org">조직도</a>
+          <a href="about.html#business">사업 영역</a>
+        </div>
       </div>
-    </div>
-    <div class="dn-nav-item">
-      <a href="products.html">제품</a>
-      <details>
-        <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
-      </details>
-      <div class="dn-dropdown">
-        <a href="nobreath.html">NObreath V2</a>
-        <a href="nobreath-v1.html">NObreath V1</a>
-        <a href="pitagoras.html">Pitagoras</a>
-        <a href="saltsignal.html">Salt Signal</a>
-        <a href="needle-counter.html">Needle Counter</a>
-        <a href="anatomy-model.html">교육용 인체모형</a>
-        <a href="cosmetics.html">화장품</a>
+      <div class="dn-nav-item">
+        <a href="products.html">제품</a>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+        </details>
+        <div class="dn-dropdown">
+          <a href="nobreath.html">NObreath V2</a>
+          <a href="nobreath-v1.html">NObreath V1</a>
+          <a href="pitagoras.html">Pitagoras</a>
+          <a href="saltsignal.html">Salt Signal</a>
+          <a href="needle-counter.html">Needle Counter</a>
+          <a href="anatomy-model.html">교육용 인체모형</a>
+          <a href="cosmetics.html">화장품</a>
+        </div>
       </div>
-    </div>
-    <div class="dn-nav-item">
-      <a href="partner.html">파트너사</a>
-      <details>
-        <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
-      </details>
-      <div class="dn-dropdown">
-        <a href="partner.html#overseas">해외 파트너십</a>
-        <a href="partner.html#domestic">국내 협력사</a>
+      <div class="dn-nav-item">
+        <a href="partner.html">파트너사</a>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+        </details>
+        <div class="dn-dropdown">
+          <a href="partner.html#overseas">해외 파트너십</a>
+          <a href="partner.html#domestic">국내 협력사</a>
+        </div>
       </div>
-    </div>
-    <div class="dn-nav-item">
-      <a href="resources.html">자료실</a>
-      <details>
-        <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
-      </details>
-      <div class="dn-dropdown">
-        <a href="resources.html#res-nobreath-v2">NObreath V2</a>
-        <a href="resources.html#res-nobreath-v1">NObreath V1</a>
-        <a href="resources.html#res-pitagoras">Pitagoras</a>
-        <a href="resources.html#res-saltsignal">Salt Signal</a>
-        <a href="resources.html#res-needle-counter">Needle Counter</a>
-        <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
-        <a href="resources.html#res-cosmetics">화장품</a>
+      <div class="dn-nav-item">
+        <a href="resources.html">자료실</a>
+        <details>
+          <summary class="dn-expand" aria-label="하위 메뉴 펼치기"></summary>
+        </details>
+        <div class="dn-dropdown">
+          <a href="resources.html#res-nobreath-v2">NObreath V2</a>
+          <a href="resources.html#res-nobreath-v1">NObreath V1</a>
+          <a href="resources.html#res-pitagoras">Pitagoras</a>
+          <a href="resources.html#res-saltsignal">Salt Signal</a>
+          <a href="resources.html#res-needle-counter">Needle Counter</a>
+          <a href="resources.html#res-anatomy-model">교육용 인체모형</a>
+          <a href="resources.html#res-cosmetics">화장품</a>
+        </div>
       </div>
-    </div>
-    <div class="dn-nav-item">
-      <a href="contact.html">문의하기</a>
-    </div>
-  </nav>
-  <button type="button" class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+      <div class="dn-nav-item">
+        <a href="contact.html">문의하기</a>
+      </div>
+    </nav>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 <div class="dn-top">
 
