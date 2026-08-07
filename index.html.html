@@ -74,12 +74,26 @@
   /* 히어로 배경(::before)이 width:100vw인데 100vw는 스크롤바 폭까지 포함해서
      문서 폭을 ~15px 넘어선다 → 가로 스크롤바가 생김. 여기서 잘라낸다. */
   .dn-top{ background:var(--cream); overflow-x:hidden; overflow-x:clip; }
+  /* 헤더를 영상 위에 겹쳐 올린다(레퍼런스 sspharm과 같은 구조).
+     다만 그쪽은 어두운 영상이라 완전 투명 + 흰 글씨가 되지만, 이 영상은 헤더가 놓이는
+     상단 띠의 평균 밝기가 199~221로 매우 밝은 반면 우측 선반의 현미경은 최저 3까지
+     어둡다. 그래서 흰 글씨도 남색 글씨도 한쪽에서 깨진다. 영상이 비쳐 보일 만큼만
+     흐린 유리를 깔아 대비를 보장하고, 글자는 기존 남색을 유지했다.
+     영상 구간을 지나면 .dn-solid 가 붙어 평소의 흰 헤더로 굳는다. */
   header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,255,255,0.88);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(255,255,255,0.5);
+    -webkit-backdrop-filter:blur(14px) saturate(1.08);
+    backdrop-filter:blur(14px) saturate(1.08);
+    border-bottom:1px solid rgba(255,255,255,0.35);
+    transition:background .3s ease, border-color .3s ease;
   }
+  header.dn-solid{
+    background:rgba(255,255,255,0.93);
+    border-bottom-color:var(--line);
+  }
+  /* 고정 헤더가 앵커 이동 지점을 가리지 않도록 */
+  html{ scroll-padding-top:78px; }
   .nav{ display:flex; align-items:center; justify-content:space-between; max-width:1120px; margin:0 auto; padding:20px 32px; }
   @media(max-width:768px){ .nav{ padding:16px 32px; } }
   .brand{ display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:0.02em; font-size:1.3rem; }
@@ -108,42 +122,77 @@
   .dn-dropdown a:hover{ background:var(--cream); color:var(--navy); }
   @media(max-width:768px){ .dn-nav{ gap:16px; font-size:0.82rem; } }
 
-  .dn-hero{
-    position:relative;
-    padding:130px 32px 110px; max-width:1120px; margin:0 auto;
+  /* 히어로: 위쪽 영상 밴드 + 아래쪽 흰 배경 카피 밴드의 2단 적층 구성.
+     영상에 동남메디칼 로고 애니메이션이 왼쪽에 들어있으므로 자르지 않고
+     16:9 원본 비율 그대로 화면 전체 폭에 깐다. 글자는 영상 위에 얹지 않고
+     아래 흰 밴드로 내려 배치하기 때문에 흐림막(그라데이션)이 필요 없다. */
+  .dn-hero{ position:relative; padding:0; margin:0; max-width:none; }
+
+  /* 영상은 순수 배경이므로 화면을 꽉 채운다(레퍼런스 sspharm).
+     다만 원본(4K, 3840x2160)보다 크게는 늘리지 않는다 — 배율 상한 1.0.
+     4K 라 웬만한 모니터에서는 상한에 닿지 않으므로 실제로는 항상 꽉 차고,
+     원본을 넘겨 확대되며 흐려지는 일만 막는 안전장치로 동작한다.
+     글씨는 영상에 구워져 있지 않고 HTML 이라 크기는 아래 clamp() 들이 따로 정한다. */
+  .dn-hero-media{
+    position:relative; overflow:hidden;
+    background:var(--cream);            /* 영상 로딩 전 검은 박스 대신 깔리는 바탕 */
+    height:100vh; height:100svh;        /* svh: 모바일 주소창 높이 변화 대응 */
+    min-height:460px;
+    width:100%;
+    max-width:3840px; max-height:2160px;   /* 원본 해상도 = 배율 1.0 */
+    margin:0 auto;
   }
-  /* 히어로 사진 영역.
-     사진을 '고정 크기 이미지'로 두면(contain / auto 100%) 폭이 고정되기 때문에,
-     브라우저를 축소해 뷰포트가 넓어지면 사진이 본문 컬럼에서 떨어져 나가거나
-     화면 끝에 닿지 못해 각진 사각형 덩어리로 떠 버린다.
-     그래서 사진을 '본문 컬럼 중앙 ~ 화면 오른쪽 끝'이라는 영역으로 정의하고
-     cover로 채운다. 영역이 항상 화면 끝까지 닿으므로 어떤 배율에서도 잘린 티가 없고,
-     시작점이 컬럼 기준이라 본문에서 절대 분리되지 않는다. */
-  .dn-hero::before{
-    content:'';
-    position:absolute; top:0; bottom:0;
-    left:50%;                              /* 본문 컬럼의 가로 중앙 */
-    right:min(0px, calc(560px - 50vw));    /* 화면 오른쪽 끝까지 (컬럼보다 좁으면 0) */
-    z-index:0;
-    background-image:
-      linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0.88) 22%, rgba(255,255,255,0.4) 42%, rgba(255,255,255,0) 68%),
-      url('메인페이지 배경 사진/메인 배경사진 7.jpg');
-    background-position: 0 0, right 65%;
-    background-size: 100% 100%, cover;
-    background-repeat: no-repeat, no-repeat;
+  /* 배경 영상이라 잘려도 되는 구도다. 장비가 프레임 가운데 있으므로 가운데를 기준으로
+     잡아 좌우가 고르게 잘리게 한다. */
+  .dn-hero-media video{
+    display:block; width:100%; height:100%;
+    object-fit:cover; object-position:50% 50%;
   }
-  /* 좁은 폭에서는 본문이 사진 영역까지 밀고 들어오므로 흰색 마스크를 더 넓게 잡는다. */
-  @media(max-width:1300px){
-    .dn-hero::before{
-      background-image:
-        linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0.95) 38%, rgba(255,255,255,0.5) 62%, rgba(255,255,255,0) 88%),
-        url('메인페이지 배경 사진/메인 배경사진 7.jpg');
-    }
+
+  /* 영상 아래 카피 밴드: 왼쪽에 라벨+제목, 오른쪽에 설명+버튼을 가로로 나눠 놓는다. */
+  /* 문구를 영상 위에 바로 얹는다(유리 바탕 없음).
+     재생 '중'에는 카메라가 줌인돼 있어 왼쪽 창밖 도시 실루엣이 어둡고, 밝기가
+     0~250 을 오가서 어떤 단색 글씨도 한쪽이 깨진다. 하지만 영상이 끝난
+     '마지막 프레임'에서는 줌아웃되어 가로 55~60% 까지 계속 밝다.
+     그래서 글씨는 모션이 끝난 뒤에 띄운다(아래 .is-in + 스크립트).
+     이 순서 덕분에 흐림막이나 유리 바탕 없이도 대비가 확보된다. */
+  .dn-hero-copy{
+    position:absolute; z-index:2;
+    left:max(32px, calc(50vw - 560px));   /* 본문 컬럼(1120px) 왼쪽 모서리에 정렬 */
+    top:50%;
+    width:min(46vw, 520px);
+    margin:0; max-width:none; padding:0;
+    /* 왼쪽에서 오른쪽으로 밀려 들어오며 나타난다.
+       세로 가운데 정렬용 -50% 는 계속 걸려 있어야 하므로 X 만 움직인다.
+       넘치는 부분은 .dn-hero-media 의 overflow:hidden 이 잘라내므로
+       가로 스크롤은 생기지 않는다. */
+    opacity:0; transform:translate(-36px, -50%);
+    transition:opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1);
   }
-  .dn-hero > *{ position:relative; z-index:1; }
-  .dn-hero-title{ font-size:clamp(2rem, 4.2vw, 2.8rem); font-weight:600; line-height:1.38; margin-bottom:22px; letter-spacing:-0.01em; color:var(--navy); word-break:keep-all; }
-  .dn-subcopy{ font-size:1.05rem; color:var(--ink-soft); max-width:480px; margin:0 0 40px; word-break:keep-all; }
-  .dn-cta-group{ display:flex; gap:16px; justify-content:flex-start; }
+  .dn-hero-copy.is-in{ opacity:1; transform:translate(0, -50%); }
+  @media(prefers-reduced-motion: reduce){
+    .dn-hero-copy{ transition:none; }
+  }
+  .dn-hero-support{ padding-top:26px; }
+  /* 화면이 커지면 글씨가 같이 커지도록 vw 를 기준으로 잡는다.
+     각 vw 계수는 1425px 폭(노트북)에서 기존 크기와 정확히 같아지도록 역산한 값이라,
+     노트북에서는 지금까지와 똑같이 보이고 더 큰 화면에서만 커진다.
+     rem 하한은 좁은 화면에서 너무 작아지지 않게, rem 상한은 4K 에서 과해지지 않게 잡았다. */
+  .dn-hero-title{ font-size:clamp(1.75rem, 2.81vw, 3.4rem); font-weight:600; line-height:1.32; margin-bottom:0; letter-spacing:-0.02em; color:var(--navy); word-break:keep-all; }
+  .dn-subcopy{ font-size:clamp(1rem, 1.123vw, 1.25rem); line-height:1.8; color:var(--ink-soft); margin:0 0 32px; word-break:keep-all; }
+  .dn-hero-copy .eyebrow{ font-size:clamp(0.78rem, 0.876vw, 0.95rem); }
+  /* 영상 위에서는 흰 배경에서 쓰던 회색(--ink-soft)이 대비 2.55 로 미달한다.
+     마지막 프레임의 가장 어두운 지점에서도 AA(4.5)를 넘도록 남색으로 올린다.
+     라벨의 기본 초록(--green)도 4.0 으로 살짝 모자라 같은 계열의 더 진한 값을 쓴다.
+     앞의 짧은 선은 장식이라 기존 색 그대로 둔다(장식은 3:1 기준). */
+  .dn-hero-copy .dn-subcopy{ color:var(--navy); }
+  .dn-hero-copy .eyebrow{ color:#245C3E; }
+  .dn-hero-copy .eyebrow::before{ background:var(--green); }
+  .dn-hero-copy .dn-btn{
+    font-size:clamp(0.92rem, 1.033vw, 1.1rem);
+    padding:clamp(14px, 0.982vw, 18px) clamp(28px, 1.965vw, 36px);
+  }
+  .dn-cta-group{ display:flex; flex-wrap:wrap; gap:14px; justify-content:flex-start; }
   .dn-btn{
     padding:14px 28px; font-size:0.92rem; font-weight:500; border-radius:2px;
     cursor:pointer; border:1px solid var(--navy); transition:all .25s ease; display:inline-block;
@@ -153,23 +202,6 @@
   .dn-btn-secondary{ background:transparent; color:var(--navy); }
   .dn-btn-secondary:hover{ background:var(--navy); color:var(--paper); }
 
-  .dn-dna{ margin-top:48px; width:100%; max-width:380px; }
-  .dn-dna svg{ width:100%; height:auto; display:block; }
-  .dn-dna .strand{
-    fill:none; stroke-width:2;
-    stroke-dasharray:620; stroke-dashoffset:620;
-    animation:dn-draw 2.2s cubic-bezier(.4,0,.2,1) forwards .2s;
-  }
-  .dn-dna .rung{
-    stroke:var(--gold); stroke-width:2;
-    stroke-dasharray:60; stroke-dashoffset:60;
-    animation:dn-draw .5s ease forwards 1.6s;
-  }
-  @keyframes dn-draw{ to{ stroke-dashoffset:0; } }
-  @media(prefers-reduced-motion: reduce){
-    .dn-dna .strand, .dn-dna .rung{ animation:none; stroke-dashoffset:0; }
-  }
-
   .dn-features{ display:grid; grid-template-columns:repeat(4, 1fr); border-top:1px solid var(--line); max-width:1120px; margin:0 auto; }
   .dn-feature{ padding:32px 20px; text-align:center; border-right:1px solid var(--line); }
   .dn-feature:last-child{ border-right:none; }
@@ -177,12 +209,32 @@
   .dn-feature-title{ font-size:0.94rem; font-weight:600; margin-bottom:6px; color:var(--navy); }
   .dn-feature-desc{ font-size:0.85rem; color:var(--ink-soft); }
 
+  /* 좁은 화면에서는 밝은 띠(가로 5~30%)가 글상자를 담을 만큼 넓지 않다.
+     그래서 영상 위에 얹지 않고 원래대로 영상 아래에 쌓는다. */
+  @media(max-width:900px){
+    .dn-hero-media{ height:auto; min-height:0; }
+    .dn-hero-media video{ aspect-ratio:16 / 9; height:auto; }
+    /* 아래로 내려오면 세로 중앙정렬용 -50% 가 필요 없으므로 가로 이동값만 남긴다. */
+    .dn-hero-copy{
+      position:static;
+      left:auto; top:auto;
+      width:auto; max-width:640px;
+      margin:0 auto; padding:52px 32px 72px;
+      /* 모바일은 좌우 여백이 32px 뿐이라 이동값이 크면 시작 순간 글자 왼쪽이
+         overflow:hidden 에 잘린다. 여백 안쪽으로 들어오게 24px 로 줄인다. */
+      transform:translateX(-24px);
+    }
+    .dn-hero-copy.is-in{ transform:none; }
+    /* 아래로 내려오면 흰 배경이므로 본문 색을 원래 회색으로 되돌린다. */
+    .dn-hero-copy .dn-subcopy{ color:var(--ink-soft); }
+    .dn-hero-support{ padding-top:28px; }
+  }
+
   @media(max-width:768px){
     .dn-features{ grid-template-columns:repeat(2, 1fr); }
     .dn-feature:nth-child(2){ border-right:none; }
     .dn-feature:nth-child(1), .dn-feature:nth-child(2){ border-bottom:1px solid var(--line); }
-    .dn-hero{ padding:60px 32px; }
-    .dn-hero::before{ background-image:none; background-color:var(--cream); }
+    .dn-hero-copy{ padding:44px 32px 60px; }
   }
 
   /* ---------- SECTION shared ---------- */
@@ -339,7 +391,7 @@
   .dn-expand{ display:none; background:none; border:none; cursor:pointer; color:var(--ink-soft); }
   body.dn-nav-open{ overflow:hidden; }
   body.dn-nav-open header{
-    position:sticky; top:0; z-index:1001;
+    position:fixed; top:0; z-index:1001;
     background:var(--paper);
     backdrop-filter:none; -webkit-backdrop-filter:none;
   }
@@ -347,8 +399,6 @@
     .nav-toggle{ display:block; }
     .brand{ font-size:1.05rem; gap:8px; white-space:nowrap; }
     .brand img{ height:26px; }
-    .dn-logo{ font-size:1.05rem; gap:8px; white-space:nowrap; }
-    .dn-logo img{ height:26px; }
     .dn-nav{
       display:none; position:fixed; top:0; left:0; right:0; height:100vh; height:100dvh; z-index:1000;
       flex-direction:column; gap:0; background:var(--paper);
@@ -468,29 +518,37 @@
 <div class="dn-top">
 
   <section class="dn-hero">
-    <div class="eyebrow">Global Diagnostic Partner</div>
-    <h1 class="dn-hero-title">정밀함이 만드는 신뢰,<br>동남메디칼</h1>
-    <p class="dn-subcopy">
-      동남메디칼은 세계적으로 검증된 진단·측정 솔루션을 엄선하여
-      국내 의료 현장에 전달하는 전문 수입 유통사입니다.
-      인허가부터 사후관리까지, 가장 정확한 기준으로 책임집니다.
-    </p>
-    <div class="dn-cta-group">
-      <a href="#products" class="dn-btn dn-btn-primary">제품 살펴보기</a>
-      <a href="#contact" class="dn-btn dn-btn-secondary">문의하기</a>
+   <div class="dn-hero-media">
+     <!-- 글씨·버튼·로고가 없는 순수 배경 영상. 문구와 버튼은 아래 HTML 이 담당하므로
+          화면이 커져도 글자 크기는 CSS 가 통제한다.
+          loop 없음: 한 번만 재생하고 마지막 프레임에서 그대로 멈춘다.
+          poster 는 이 영상의 첫 프레임(hero-poster.jpg, 83KB)이라 재생이 시작되는
+          순간 화면이 튀지 않는다. -->
+     <video autoplay muted playsinline preload="auto"
+            poster="메인페이지 배경 사진/hero-poster.jpg"
+            aria-label="검사실에 놓인 NObreath 호기 분석기와 전용 배양기">
+       <source src="메인페이지 배경 사진/hero-4k.mp4" type="video/mp4">
+     </video>
+
+   <div class="dn-hero-copy">
+    <div class="dn-hero-lead">
+     <div class="eyebrow">Global Diagnostic Partner</div>
+     <h1 class="dn-hero-title">정밀함이 만드는 신뢰,<br>동남메디칼</h1>
     </div>
 
-    <div class="dn-dna">
-      <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
-        <path class="strand" d="M0,40 C25,10 50,10 75,40 C100,70 125,70 150,40 C175,10 200,10 225,40 C250,70 275,70 300,40 C325,10 350,10 375,40 C388,54 394,54 400,40" stroke="var(--navy)" />
-        <path class="strand" d="M0,40 C25,70 50,70 75,40 C100,10 125,10 150,40 C175,70 200,70 225,40 C250,10 275,10 300,40 C325,70 350,70 375,40 C388,54 394,54 400,40" stroke="var(--green)" />
-        <line class="rung" x1="37.5" y1="10" x2="37.5" y2="70" />
-        <line class="rung" x1="112.5" y1="10" x2="112.5" y2="70" />
-        <line class="rung" x1="187.5" y1="10" x2="187.5" y2="70" />
-        <line class="rung" x1="262.5" y1="10" x2="262.5" y2="70" />
-        <line class="rung" x1="337.5" y1="10" x2="337.5" y2="70" />
-      </svg>
+    <div class="dn-hero-support">
+     <p class="dn-subcopy">
+       동남메디칼은 세계적으로 검증된 진단·측정 솔루션을 엄선하여
+       국내 의료 현장에 전달하는 전문 수입 유통사입니다.
+       인허가부터 사후관리까지, 가장 정확한 기준으로 책임집니다.
+     </p>
+     <div class="dn-cta-group">
+       <a href="#products" class="dn-btn dn-btn-primary">제품 살펴보기</a>
+       <a href="#contact" class="dn-btn dn-btn-secondary">문의하기</a>
+     </div>
     </div>
+   </div>
+   </div>
   </section>
 
   <section class="dn-features">
@@ -772,6 +830,61 @@
   window.addEventListener('resize', function(){
     if(window.innerWidth > 768 && nav.classList.contains('open')) closeMenu();
   });
+})();
+
+/* 배경 모션이 끝난 뒤에 문구를 띄운다.
+   재생 중에는 화면이 어두워졌다 밝아졌다 해서 글씨 대비가 깨지지만,
+   마지막 프레임은 밝기가 안정적이라 그 위에서는 잘 읽힌다. */
+(function(){
+  var video = document.querySelector('.dn-hero-media video');
+  var copy  = document.querySelector('.dn-hero-copy');
+  if(!copy) return;
+  var shown = false;
+  function reveal(){
+    if(shown) return;
+    shown = true;
+    copy.classList.add('is-in');
+  }
+  if(!video){ reveal(); return; }
+
+  /* 영상 끝(4.03초)까지 기다리면 글씨가 늦게 뜬다. 프레임별로 글씨 자리의 대비를
+     실측해 보면 2.0초부터 네 요소(제목·본문·라벨·버튼) 모두 AA(4.5)를 넘으므로
+     그 시점에 띄운다. 그 전에는 카메라가 줌인돼 있어 대비가 2.6 까지 떨어진다. */
+  var REVEAL_AT = 2.1;
+  video.addEventListener('timeupdate', function(){
+    if(video.currentTime >= REVEAL_AT) reveal();
+  });
+  /* 재생이 끝났는데 위 조건을 놓친 경우의 보완 */
+  video.addEventListener('ended', reveal);
+  /* 영상을 못 불러오면 기다릴 이유가 없다. */
+  video.addEventListener('error', reveal);
+  /* 최후 안전장치: 자동재생이 막히는 등으로 영상이 아예 진행되지 않아도
+     글씨는 반드시 나와야 한다. 영상 길이(약 4.1초)보다 넉넉히 뒤에 띄운다. */
+  setTimeout(reveal, 8000);
+  /* 이미 끝난 상태로 들어온 경우(뒤로가기 등) */
+  if(video.ended) reveal();
+})();
+
+/* 헤더가 영상 위에 있을 때는 흐린 유리, 영상을 지나면 흰 헤더로 굳힌다. */
+(function(){
+  var header = document.querySelector('header');
+  var media  = document.querySelector('.dn-hero-media');
+  if(!header || !media) return;
+  var ticking = false;
+  function sync(){
+    ticking = false;
+    // 영상 아래쪽 경계가 헤더 높이까지 올라오면 전환
+    var past = media.getBoundingClientRect().bottom <= header.offsetHeight;
+    header.classList.toggle('dn-solid', past);
+  }
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(sync);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  sync();
 })();
 </script>
 </body>
